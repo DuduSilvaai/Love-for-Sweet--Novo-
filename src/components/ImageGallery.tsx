@@ -143,7 +143,7 @@ const ImageGallery = () => {
                       backgroundImage: `url(${galleryImages[selectedImage].src})`,
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/40 to-transparent"></div>
                   </div>
 
                   <div className="relative z-10 h-full flex items-end">

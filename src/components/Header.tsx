@@ -41,7 +41,25 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8" onClick={(e) => {
+          const target = e.target as HTMLElement;
+          const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+          if (!anchor) return;
+          e.preventDefault();
+          const id = anchor.getAttribute('href')?.slice(1);
+          if (!id) return;
+          const el = document.getElementById(id);
+          if (!el) return;
+          const headerOffset = (document.querySelector('header') as HTMLElement)?.offsetHeight || 0;
+          const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+          // @ts-ignore
+          const lenis = window.lenis;
+          if (lenis && typeof lenis.scrollTo === 'function') {
+            lenis.scrollTo(top);
+          } else {
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        }}>
           <a
             href="#sobre"
             className={`transition-colors duration-300 ${
