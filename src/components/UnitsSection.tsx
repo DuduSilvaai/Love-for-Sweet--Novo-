@@ -16,6 +16,10 @@ import lapa from "@/assets/lapa.png";
 import campesina from "@/assets/campesina.png";
 import saoRoque from "@/assets/sao-roque.png";
 import sorocaba from "@/assets/sorocaba.png";
+import teste2 from "@/assets/teste2.png";
+import teste3 from "@/assets/teste3.png";
+import teste4 from "@/assets/teste4.png";
+import sorocaba2 from "@/assets/sorocaba2.png";
 const UnitsSection = () => {
   const stores = [
     {
@@ -51,7 +55,7 @@ const UnitsSection = () => {
       address: "Av. Dionysia Alves Barreto 211, Osasco - SP",
       hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Próximo ao metrô",
-      image: testeSecundariodionysia,
+      image: teste4,
       mapsLink: "https://www.google.com/maps/place/Love+For+Sweet+-+Osasco+Dionysia/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94ceff0027e3a0cd:0xe9f4292961f82ec4!8m2!3d-23.5365621!4d-46.7833568!16s%2Fg%2F11xlw3wk70?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
@@ -78,7 +82,7 @@ const UnitsSection = () => {
       address: "Av. Doutor José Amaro Faraldo 1050, Botucatu - SP",
       hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Tradição da zona sul",
-      image: storeSantana,
+      image: teste3,
       mapsLink: "https://www.google.com/maps/place/Shopping+Park+Botucatu/@-22.9144088,-48.4661254,17z/data=!3m1!4b1!4m6!3m5!1s0x94c6df23759d49bf:0xa61da4e8682a0cf4!8m2!3d-22.9144088!4d-48.4635505!16s%2Fg%2F1q67q_yjd?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
   ];
