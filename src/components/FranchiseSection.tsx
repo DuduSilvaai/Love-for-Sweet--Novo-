@@ -9,7 +9,7 @@ import bannerWedding from "@/assets/banner-wedding.jpg";
 import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import heroDesserts from "@/assets/hero-desserts.jpg";
 import storeItaim from "@/assets/store-itaim.jpg";
-import casal from "@/assets/casal.jpeg";
+import casal from "@/assets/casal2.png";
 const FranchiseSection = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -165,25 +165,19 @@ const FranchiseSection = () => {
               {galleryImages.map((image, index) => (
                 <Card
                   key={index}
-                  className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300 cursor-pointer group"
+                  className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer"
                   onClick={() => setSelectedImage(index)}
                 >
                   <div className="absolute inset-0">
                     {/* Imagem principal */}
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 group-hover:opacity-0"
+                      className="absolute inset-0 bg-cover bg-center"
                       style={{ backgroundImage: `url(${image.src})` }}
-                    ></div>
-
-                    {/* Imagem de hover */}
-                    <div
-                      className="absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      style={{ backgroundImage: `url(${image.hoverSrc})` }}
                     ></div>
 
                     {/* Gradiente */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-300"
+                      className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent opacity-90"
                       style={{
                         background:
                           "linear-gradient(to top, hsl(350 40% 52%) 0%, hsl(350 40% 52% / 0.6) 20%, transparent 60%)",

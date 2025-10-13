@@ -76,38 +76,12 @@ const Footer = () => {
 
             {/* Menu */}
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Menu</h3>
-              <div className="space-y-3 text-brand-accent-lightish ">
-                <a
-                  href="#sobre"
-                  className="block hover:text-white transition-colors font-light "
-                >
-                  Sobre Nós
-                </a>
-                <a
-                  href="#unidades"
-                  className="block hover:text-white transition-colors font-light "
-                >
-                  Nossas Lojas
-                </a>
-                <a
-                  href="#franquia"
-                  className="block hover:text-white transition-colors font-light "
-                >
-                  Seja Franqueado
-                </a>
-                <a
-                  href="#cardapio"
-                  className="block hover:text-white transition-colors font-light "
-                >
-                  Cardápio
-                </a>
-                <a
-                  href="#encomendas"
-                  className="block hover:text-white transition-colors font-light "
-                >
-                  Encomendas
-                </a>
+              <div className="flex items-center">
+                <img
+                  src="./src/assets/logo.png"
+                  alt="Love for Sweet"
+                  className="w-[360px] md:w-[420px] lg:w-[480px]"
+                />
               </div>
             </div>
 
