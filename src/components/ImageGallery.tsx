@@ -102,15 +102,6 @@ const ImageGallery = () => {
                     style={{ backgroundImage: `url(${image.src})` }}
                   ></div>
 
-                  {/* Gradiente */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-70"
-                    style={{
-                      background:
-                        "linear-gradient(to top, hsl(350 40% 52%) 0%, hsl(350 40% 52% / 0.6) 20%, transparent 60%)",
-                    }}
-                  ></div>
-
                   {/* Overlay hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                 </div>

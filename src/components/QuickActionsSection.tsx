@@ -4,7 +4,10 @@ import { MapPin, Menu, Users, Star } from "lucide-react";
 import franqueado from "@/assets/franqueado.png";
 const QuickActionsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-muted/20">
+    <section
+      id="franquia"
+      className="py-20 bg-gradient-to-br from-background to-muted/20"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
