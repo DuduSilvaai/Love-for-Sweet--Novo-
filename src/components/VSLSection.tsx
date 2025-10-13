@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play } from "lucide-react";
-import vslBackground from "@/assets/vsl-background.jpg";
+import casal from "@/assets/casal.jpeg";
 
 const VSLSection = () => {
 
@@ -26,7 +26,7 @@ const VSLSection = () => {
             <Card className="relative h-[400px] rounded-3xl overflow-hidden shadow-elegant group cursor-pointer">
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${vslBackground})` }}
+                style={{ backgroundImage: `url(${casal})` }}
               >
                 <div className="absolute inset-0 bg-brand-primary/20 group-hover:bg-primary/10 transition duration-300"></div>
               </div>

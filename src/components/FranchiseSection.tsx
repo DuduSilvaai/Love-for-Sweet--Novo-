@@ -9,6 +9,7 @@ import bannerWedding from "@/assets/banner-wedding.jpg";
 import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import heroDesserts from "@/assets/hero-desserts.jpg";
 import storeItaim from "@/assets/store-itaim.jpg";
+import casal from "@/assets/casal.jpeg";
 const FranchiseSection = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -95,7 +96,7 @@ const FranchiseSection = () => {
               <Card className="relative h-[400px] rounded-3xl overflow-hidden shadow-elegant group cursor-pointer">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${vslBackground})` }}
+                  style={{ backgroundImage: `url(${casal})` }}
                 >
                   <div className="absolute inset-0 bg-brand-primary/20 group-hover:bg-primary/10 transition duration-300"></div>
                 </div>
@@ -122,13 +123,22 @@ const FranchiseSection = () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="heading-card text-brand-primary mb-4">
-                    Tradição Familiar, Inovação Constante
+                    A LOVE nasceu de uma paixão.
                   </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Há mais de uma década, a Love for Sweet vem criando doces que
-                    despertam emoções e marcam momentos especiais. Nossa receita
-                    secreta? Ingredientes premium, técnicas artesanais e muito
-                    amor em cada criação.
+                    Nossa história começou com um sonho: criar uma confeitaria capaz de espalhar os melhores sentimentos em cada colher. Em 2021, esse sonho se tornou realidade com a inauguração da nossa primeira loja.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    O sucesso foi tão imediato que logo se espalhou, dando origem a outro sonho realizado: transformar a LOVE em uma grande família de franqueados que compartilham da mesma paixão.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Hoje com +36 Mil seguidores e mais de R$1,8Milhao faturamento.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Agora, queremos te ajudar a realizar o seu sonho.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    Faça parte desta história de amor e sucesso! Entre em contato conosco para nos conhecermos melhor e dê o primeiro passo para se tornar um franqueado LOVE.
                   </p>
                 </div>
 
