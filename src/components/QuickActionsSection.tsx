@@ -32,11 +32,18 @@ const QuickActionsSection = () => {
                   </p>
                 </div>
                 <Button
+                  asChild
                   variant="hero"
                   size="lg"
                   className="text-sm font-semibold px-8 py-4"
                 >
-                  Encontrar Agora
+                  <a
+                    href="http://wa.me/11965048285"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Fale Conosco
+                  </a>
                 </Button>
               </div>
             </Card>
