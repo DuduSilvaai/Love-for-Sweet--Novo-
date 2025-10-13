@@ -13,7 +13,7 @@ const Footer = () => {
                   <img
                     src="./src/assets/logo-white.png"
                     alt="Love for Sweet"
-                    className="w-[180px]"
+                    className="w-[180px] transition-transform duration-300 hover:scale-105"
                   />
                 </Link>
               </div>
@@ -49,10 +49,10 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-brand-accent-lightish" />
                   <a
-                    href="tel:(11)9999-0000"
+                    href="tel:(11)96504-8285"
                     className="text-brand-accent-lightish hover:text-white transition-colors font-light "
                   >
-                    (11) 9999-0000
+                    (11) 96504-8285
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -78,7 +78,7 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="flex items-center">
                 <img
-                  src="./src/assets/logo.png"
+                  src="./src/assets/logo-branca-coracao.png"
                   alt="Love for Sweet"
                   className="w-[360px] md:w-[420px] lg:w-[480px]"
                 />

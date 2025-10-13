@@ -29,13 +29,13 @@ const Header = () => {
               <img
                 src="./src/assets/logo-pink.png"
                 alt="Love for Sweet"
-                className="h-[40px]"
+                className="h-[40px] transition-transform duration-300 hover:scale-105"
               />
             ) : (
               <img
                 src="./src/assets/logo-white.png"
                 alt="Love for Sweet"
-                className="h-[40px]"
+                className="h-[40px] transition-transform duration-300 hover:scale-105"
               />
             )}
           </Link>
