@@ -4,7 +4,6 @@ import { Play } from "lucide-react";
 import casal from "@/assets/casal2.png";
 
 const VSLSection = () => {
-
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
@@ -40,13 +39,6 @@ const VSLSection = () => {
                   <Play className="h-8 w-8 ml-1" />
                 </Button>
               </div>
-
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h3 className="text-xl font-semibold mb-2">Nossa História</h3>
-                <p className="text-sm opacity-90">
-                  Assista e descubra como criamos momentos doces
-                </p>
-              </div>
             </Card>
 
             {/* Content */}
@@ -56,10 +48,15 @@ const VSLSection = () => {
                   A LOVE nasceu de uma paixão.
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Nossa história começou com um sonho: criar uma confeitaria capaz de espalhar os melhores sentimentos em cada colher. Em 2021, esse sonho se tornou realidade com a inauguração da nossa primeira loja.
+                  Nossa história começou com um sonho: criar uma confeitaria
+                  capaz de espalhar os melhores sentimentos em cada colher. Em
+                  2021, esse sonho se tornou realidade com a inauguração da
+                  nossa primeira loja.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  O sucesso foi tão imediato que logo se espalhou, dando origem a outro sonho realizado: transformar a LOVE em uma grande família de franqueados que compartilham da mesma paixão.
+                  O sucesso foi tão imediato que logo se espalhou, dando origem
+                  a outro sonho realizado: transformar a LOVE em uma grande
+                  família de franqueados que compartilham da mesma paixão.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Hoje com +36 Mil seguidores e mais de R$1,8Milhao faturamento.
@@ -68,7 +65,9 @@ const VSLSection = () => {
                   Agora, queremos te ajudar a realizar o seu sonho.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Faça parte desta história de amor e sucesso! Entre em contato conosco para nos conhecermos melhor e dê o primeiro passo para se tornar um franqueado LOVE.
+                  Faça parte desta história de amor e sucesso! Entre em contato
+                  conosco para nos conhecermos melhor e dê o primeiro passo para
+                  se tornar um franqueado LOVE.
                 </p>
               </div>
 
@@ -87,7 +86,6 @@ const VSLSection = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

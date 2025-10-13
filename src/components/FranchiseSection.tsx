@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Award, ArrowRight, X, Play } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import vslBackground from "@/assets/vsl-background.jpg";
 import storeInterior from "@/assets/store-interior.jpg";
 import bannerWedding from "@/assets/banner-wedding.jpg";
@@ -12,6 +12,26 @@ import storeItaim from "@/assets/store-itaim.jpg";
 import casal from "@/assets/casal2.png";
 const FranchiseSection = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
+  // Fechar modal com tecla ESC
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && selectedImage !== null) {
+        setSelectedImage(null);
+      }
+    };
+
+    if (selectedImage !== null) {
+      document.addEventListener("keydown", handleEscKey);
+      // Prevenir scroll do body quando modal estiver aberto
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedImage]);
 
   const benefits = [
     {
@@ -97,26 +117,7 @@ const FranchiseSection = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${casal})` }}
-                >
-                  <div className="absolute inset-0 bg-brand-primary/20 group-hover:bg-primary/10 transition duration-300"></div>
-                </div>
-
-                <div className="relative z-10 h-full flex items-center justify-center">
-                  <Button
-                    variant="hero"
-                    size="lg"
-                    className="h-16 w-16 rounded-full p-0 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
-                  >
-                    <Play className="h-8 w-8 ml-1" />
-                  </Button>
-                </div>
-
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <h3 className="text-xl font-semibold mb-2">Nossa História</h3>
-                  <p className="text-sm opacity-90">
-                    Assista e descubra como criamos momentos doces
-                  </p>
-                </div>
+                ></div>
               </Card>
 
               {/* Content */}
@@ -126,19 +127,28 @@ const FranchiseSection = () => {
                     A LOVE nasceu de uma paixão.
                   </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Nossa história começou com um sonho: criar uma confeitaria capaz de espalhar os melhores sentimentos em cada colher. Em 2021, esse sonho se tornou realidade com a inauguração da nossa primeira loja.
+                    Nossa história começou com um sonho: criar uma confeitaria
+                    capaz de espalhar os melhores sentimentos em cada colher. Em
+                    2021, esse sonho se tornou realidade com a inauguração da
+                    nossa primeira loja.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    O sucesso foi tão imediato que logo se espalhou, dando origem a outro sonho realizado: transformar a LOVE em uma grande família de franqueados que compartilham da mesma paixão.
+                    O sucesso foi tão imediato que logo se espalhou, dando
+                    origem a outro sonho realizado: transformar a LOVE em uma
+                    grande família de franqueados que compartilham da mesma
+                    paixão.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Hoje com +36 Mil seguidores e mais de R$1,8Milhao faturamento.
+                    Hoje com +36 Mil seguidores e mais de R$1,8Milhao
+                    faturamento.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
                     Agora, queremos te ajudar a realizar o seu sonho.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Faça parte desta história de amor e sucesso! Entre em contato conosco para nos conhecermos melhor e dê o primeiro passo para se tornar um franqueado LOVE.
+                    Faça parte desta história de amor e sucesso! Entre em
+                    contato conosco para nos conhecermos melhor e dê o primeiro
+                    passo para se tornar um franqueado LOVE.
                   </p>
                 </div>
 
@@ -165,31 +175,27 @@ const FranchiseSection = () => {
               {galleryImages.map((image, index) => (
                 <Card
                   key={index}
-                  className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer"
+                  className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer group transition-transform duration-300 hover:scale-102"
                   onClick={() => setSelectedImage(index)}
                 >
                   <div className="absolute inset-0">
                     {/* Imagem principal */}
                     <div
-                      className="absolute inset-0 bg-cover bg-center"
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                       style={{ backgroundImage: `url(${image.src})` }}
                     ></div>
 
                     {/* Gradiente */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent opacity-90"
+                      className="absolute inset-0 bg-gradient-to-t from-brand-primary to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-70"
                       style={{
                         background:
                           "linear-gradient(to top, hsl(350 40% 52%) 0%, hsl(350 40% 52% / 0.6) 20%, transparent 60%)",
                       }}
                     ></div>
-                  </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h4 className="text-xl font-semibold mb-2">
-                      {image.title}
-                    </h4>
-                    <p className="text-sm opacity-90">{image.description}</p>
+                    {/* Overlay hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                   </div>
                 </Card>
               ))}
@@ -198,13 +204,22 @@ const FranchiseSection = () => {
 
           {/* Lightbox Modal */}
           {selectedImage !== null && (
-            <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-              <div className="relative max-w-5xl max-h-[90vh] w-full">
+            <div
+              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <div
+                className="relative max-w-5xl max-h-[90vh] w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImage(null);
+                  }}
+                  className="absolute top-4 right-4 z-50 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/50 rounded-full h-12 w-12"
                 >
                   <X className="h-6 w-6" />
                 </Button>
