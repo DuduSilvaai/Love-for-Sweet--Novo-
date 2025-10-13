@@ -8,7 +8,12 @@ import bannerWedding from "@/assets/banner-wedding.jpg";
 import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import heroDesserts from "@/assets/hero-desserts.jpg";
 import storeItaim from "@/assets/store-itaim.jpg";
-
+import capuccino from "@/assets/products/capuccino.jpeg";
+import coxinhaMorango from "@/assets/products/coxinha-morango.png";
+import tortaNinho from "@/assets/products/torta-ninho.jpeg";
+import croissantPistache from "@/assets/products/pistache-croi.png";
+import croissantMorango from "@/assets/products/croassant-morango-nutella.png";
+import redVelvet from "@/assets/products/fatia-supreme-red.png";
 const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
@@ -34,37 +39,37 @@ const ImageGallery = () => {
 
   const galleryImages = [
     {
-      src: storeInterior,
+      src: capuccino,
       hoverSrc: bannerWedding,
       title: "Nossa Loja",
       description: "Ambiente acolhedor e sofisticado",
     },
     {
-      src: vslBackground,
+      src: coxinhaMorango,
       hoverSrc: bannerChocolates,
       title: "Processo Artesanal",
       description: "Cada doce feito com dedicação",
     },
     {
-      src: bannerWedding,
+      src: tortaNinho,
       hoverSrc: heroDesserts,
       title: "Eventos Especiais",
       description: "Criamos doces únicos para suas celebrações",
     },
     {
-      src: bannerChocolates,
+      src: croissantPistache,
       hoverSrc: storeItaim,
       title: "Chocolates Premium",
       description: "Ingredientes selecionados e sabores exclusivos",
     },
     {
-      src: heroDesserts,
+      src: croissantMorango,
       hoverSrc: storeInterior,
       title: "Sobremesas Artesanais",
       description: "Criações que despertam todos os sentidos",
     },
     {
-      src: storeItaim,
+      src: redVelvet,
       hoverSrc: vslBackground,
       title: "Nossas Unidades",
       description: "Espaços especiais em toda a cidade",
