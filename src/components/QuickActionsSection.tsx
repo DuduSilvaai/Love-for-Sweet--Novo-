@@ -21,7 +21,7 @@ const QuickActionsSection = () => {
                     <Star className="w-10 h-10" />
                   </div>
                   <h3 className="text-3xl font-serif mb-4">
-                    Torne-se um Franqueado
+                    Torne–se um Franqueado
                   </h3>
                   <p className="text-xl text-white/90 mb-8 font-light leading-relaxed">
                     Descubra nossa loja mais próxima de você e visite nossos

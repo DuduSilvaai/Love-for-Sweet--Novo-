@@ -92,13 +92,13 @@ const ImageGallery = () => {
             {galleryImages.map((image, index) => (
               <Card
                 key={index}
-                className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer group transition-transform duration-300 hover:scale-105"
+                className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer group transition-transform duration-300 hover:scale-102"
                 onClick={() => setSelectedImage(index)}
               >
                 <div className="absolute inset-0">
                   {/* Imagem principal */}
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url(${image.src})` }}
                   ></div>
 
