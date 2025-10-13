@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import bannerChocolates from "@/assets/banner-chocolates.jpg";
-import bannerBebidas from "@/assets/banner-bebida.png";
-import bannerBebidasMobile from "@/assets/banner-bebida-mobile.png";
+import bannerBrunches from "@/assets/banner-brunch.png";
+import bannerBrunchesMobile from "@/assets/banner-brunch-mobile.png";
+import bannerMacarons from "@/assets/banner-macarons.png";
+import bannerMacaronsMobile from "@/assets/banner-macarons-mobile.png";
+import bannerBolo from "@/assets/banner-bolo.png";
+import bannerBoloMobile from "@/assets/banner-bolo-mobile.png";
 import bannerMilkshakes from "@/assets/banner-milkshake.png";
 import bannerMilkshakesMobile from "@/assets/banner-milkshake-mobile.png";
 const CarouselSection = () => {
@@ -25,24 +28,48 @@ const CarouselSection = () => {
   const slides = [
     {
       id: 1,
-      title: "Refrescância Inesquecível",
-      subtitle: "Entre cores, aromas e doçura, nasce uma experiência única.",
-      description:
-        "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
-      cta: "Encomendar Agora",
-      image: bannerBebidas,
-      imageMobile: bannerBebidasMobile,
-      gradient: "from-brand-primary/90 to-brand-secondary/90",
-    },
-    {
-      id: 2,
-      title: "Chocolates Artesanais",
-      subtitle: "Experiência de sabor incomparável",
+      title: "",
+      subtitle: "",
       description:
         "Nossos chocolates são feitos com ingredientes premium selecionados, criando uma experiência sensorial única.",
       cta: "Descobrir Sabores",
+      image: bannerBrunches,
+      imageMobile: bannerBrunchesMobile,
+      gradient: "from-brand-secondary/90 to-brand-accent/90",
+    },
+    {
+      id: 2,
+      title: "Sua Fatia de Perfeição",
+      subtitle:
+        "Camadas torta de leveza e sabor criadas para transformar o seu dia.",
+      description:
+        "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
+      cta: "Descobrir Sabores",
+      image: bannerBolo,
+      imageMobile: bannerBoloMobile,
+      gradient: "from-brand-secondary/90 to-brand-accent/90",
+    },
+    {
+      id: 2,
+      title: "Sua Nova Obsessão de Chocolate",
+      subtitle: "Criado para os verdadeiros amantes de chocolate.",
+      description:
+        "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
+      cta: "Encomendar Agora",
       image: bannerMilkshakes,
       imageMobile: bannerMilkshakesMobile,
+      gradient: "from-brand-primary/90 to-brand-secondary/90",
+    },
+    {
+      id: 3,
+      title: "Coloridos por fora, apaixonantes por dentro",
+      subtitle:
+        "Macarons que transformam qualquer pausa em um momento doce e inesquecível",
+      description:
+        "Nossos chocolates são feitos com ingredientes premium selecionados, criando uma experiência sensorial única.",
+      cta: "Descobrir Sabores",
+      image: bannerMacarons,
+      imageMobile: bannerMacaronsMobile,
       gradient: "from-brand-secondary/90 to-brand-accent/90",
     },
   ];
@@ -51,7 +78,7 @@ const CarouselSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 1000000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -87,20 +114,24 @@ const CarouselSection = () => {
 
                     <div className="relative z-10 h-full flex items-start pt-20 max-[860px]:pt-12">
                       <div className="container mx-auto px-12 max-[860px]:px-8 h-full flex flex-col">
-                        <div className="max-w-lg lg:max-w-xl text-white max-[860px]:max-w-full">
-                          <h2 className=" lg:text-6xl sm:text-5xl mb-2 animate-fade-up max-[860px]:text-3xl">
+                        <div className="max-w-lg lg:max-w-xl text-white max-[860px]:max-w-full max-[1000px]:max-w-md">
+                          <h2 className=" lg:text-6xl sm:text-5xl mb-2 animate-fade-up max-[860px]:text-3xl max-w-full max-[1177px]:max-w-md max-[1000px]:max-w-md">
                             {slide.title}
                           </h2>
                           <h3 className="text-lg md:text-2xl lg:text-3xl mb-6 animate-fade-up font-extrabold max-w-md max-[860px]:text-xl max-[860px]:max-w-full">
                             {slide.subtitle}
                           </h3>
-                          <Button
-                            variant="hero"
-                            size="lg"
-                            className="animate-fade-up max-[860px]:w-full"
-                          >
-                            {slide.cta}
-                          </Button>
+                          {slide.id === 1 ? (
+                            ""
+                          ) : (
+                            <Button
+                              variant="hero"
+                              size="lg"
+                              className="animate-fade-up max-[860px]:w-full"
+                            >
+                              {slide.cta}
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
