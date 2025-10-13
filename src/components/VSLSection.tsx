@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play } from "lucide-react";
-import casal from "@/assets/casal.jpeg";
+import casal from "@/assets/casal2.png";
 
 const VSLSection = () => {
 
