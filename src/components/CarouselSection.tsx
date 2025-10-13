@@ -50,7 +50,7 @@ const CarouselSection = () => {
       gradient: "from-brand-secondary/90 to-brand-accent/90",
     },
     {
-      id: 2,
+      id: 4,
       title: "Sua Nova Obsessão de Chocolate",
       subtitle: "Criado para os verdadeiros amantes de chocolate.",
       description:
@@ -146,18 +146,18 @@ const CarouselSection = () => {
             variant="ghost"
             size="icon"
             onClick={prevSlide}
-            className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
+            className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/50 rounded-full h-10 w-10"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5" />
           </Button>
 
           <Button
             variant="ghost"
             size="icon"
             onClick={nextSlide}
-            className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
+            className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/50 rounded-full h-10 w-10"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5" />
           </Button>
 
           {/* Dots Indicator */}
@@ -169,7 +169,7 @@ const CarouselSection = () => {
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentSlide
                     ? "bg-brand-primary brightness-125"
-                    : "bg-muted hover:bg-brand-primary/50"
+                    : "bg-muted border border-gray-300 hover:bg-brand-primary/50 hover:border-brand-primary/50"
                 }`}
               />
             ))}
