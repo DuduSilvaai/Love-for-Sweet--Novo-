@@ -4,6 +4,7 @@ import QuickActionsSection from "@/components/QuickActionsSection";
 import CarouselSection from "@/components/CarouselSection";
 import UnitsSection from "@/components/UnitsSection";
 import FranchiseSection from "@/components/FranchiseSection";
+import ImageGallery from "@/components/ImageGallery";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -14,6 +15,7 @@ const Index = () => {
         <HeroSection />
         <QuickActionsSection />
         <CarouselSection />
+        <ImageGallery />
         <UnitsSection />
         <FranchiseSection />
       </main>
