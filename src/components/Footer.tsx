@@ -1,4 +1,4 @@
-import { Heart, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Heart, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
@@ -58,18 +58,11 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-brand-accent-lightish" />
                   <a
-                    href="mailto:contato@loveforsweet.com.br"
+                    href="mailto:loveforsweet.franchising@gmail.com"
                     className="text-brand-accent-lightish hover:text-white transition-colors font-light "
                   >
-                    contato@loveforsweet.com.br
+                    loveforsweet.franchising@gmail.com
                   </a>
-                </div>
-                <div className="flex items-center space-x-3 text-brand-accent-lightish ">
-                  <MapPin className="w-5 h-5 text-brand-accent-lightish mt-0.5" />
-                  <div>
-                    <p className="font-light">Rua Augusta, 1234</p>
-                    <p className="font-light">Jardins - São Paulo - SP</p>
-                  </div>
                 </div>
               </div>
             </div>
