@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 
 // Import store images
 import storeJardins from "@/assets/store-jardins.jpg";
@@ -9,70 +9,77 @@ import storeVilaMadalena from "@/assets/store-vila-madalena.jpg";
 import storePinheiros from "@/assets/store-pinheiros.jpg";
 import storeItaim from "@/assets/store-itaim.jpg";
 import storeSantana from "@/assets/store-santana.jpg";
+import osascoDionysia from "@/assets/loja-dionysia.png";
+import testeSecundariodionysia from "@/assets/teste-secundario-dionysia.png";
+import barueri from "@/assets/barueri.png";
+import lapa from "@/assets/lapa.png";
+import campesina from "@/assets/campesina.png";
+import saoRoque from "@/assets/sao-roque.png";
+import sorocaba from "@/assets/sorocaba.png";
 const UnitsSection = () => {
   const stores = [
     {
       id: 1,
       name: "Love For Sweet Barueri",
       address: "Av. Henriqueta Mendes Guerra 1330, Barueri - SP",
-      phone: "(11) 9999-0001",
-      hours: "Seg-Dom: 8h às 22h",
+      hours: "Seg-Sáb: 09:30 às 20h; Dom: 12h às 19h",
       highlight: "Nossa loja principal",
-      image: storeJardins,
+      image: barueri,
+      mapsLink: "https://www.google.com/maps/place/Love+For+Sweet/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cf036876cecbff:0x1b76f0a36872987f!8m2!3d-23.5091465!4d-46.8875661!16s%2Fg%2F11lh6ft4_n?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 2,
       name: "Love For Sweet Lapa",
       address: "Rua 12 de Outubro 615, São Paulo - SP",
-      phone: "(11) 9999-0002",
-      hours: "Seg-Dom: 9h às 21h",
+      hours: "Seg-Sáb: 9h às 19h; Dom: 12h às 19h",
       highlight: "Especializada em eventos",
-      image: storeeMoema,
+      image: lapa,
+      mapsLink: "https://www.google.com/maps/place/Love+For+Sweet+-+Lapa/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cef919fd0e79ad:0x1d1824bd56f4050e!8m2!3d-23.523316!4d-46.7056167!16s%2Fg%2F11szkxltxz?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 3,
       name: "Love For Sweet  Osasco Campesina",
       address: "Rua Mônica Maria Hubacher Smith 45, São Paulo - SP",
-      phone: "(11) 9999-0003",
-      hours: "Seg-Dom: 8h às 23h",
+      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Ambiente jovem e moderno",
-      image: storeVilaMadalena,
+      image: campesina,
+      mapsLink: "https://www.google.com/maps/place/Love+For+Sweet+Osasco/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94ceff179eb99e23:0xf19cd683686a80b2!8m2!3d-23.5444487!4d-46.7661728!16s%2Fg%2F11ydjcmp4l?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 4,
       name: "Love for Sweet Osasco Dionysia",
       address: "Av. Dionysia Alves Barreto 211, Osasco - SP",
-      phone: "(11) 9999-0004",
-      hours: "Seg-Dom: 8h às 22h",
+      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Próximo ao metrô",
-      image: storePinheiros,
+      image: testeSecundariodionysia,
+      mapsLink: "https://www.google.com/maps/place/Love+For+Sweet+-+Osasco+Dionysia/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94ceff0027e3a0cd:0xe9f4292961f82ec4!8m2!3d-23.5365621!4d-46.7833568!16s%2Fg%2F11xlw3wk70?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 5,
       name: "Love for Sweet Shopping Catarina",
       address: "Rua Rafael Dias Costa 140, São Roque - SP",
-      phone: "(11) 9999-0005",
-      hours: "Seg-Sex: 7h às 20h",
+      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Perfeita para o corporativo",
-      image: storeItaim,
+      image: saoRoque,
+      mapsLink: "https://www.google.com/maps/place/Catarina+Fashion+Outlet/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cf6a455ebc270d:0x9fa1b986c75abcd0!8m2!3d-23.4201508!4d-47.1627973!16s%2Fg%2F11bzsnltkk?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 6,
       name: "Love for Sweet Shopping Iguatemi Esplanada",
       address: "Av. Gisele Constantino 1850, Sorocaba - SP",
-      phone: "(11) 9999-0006",
-      hours: "Seg-Dom: 9h às 21h",
+      hours: "Seg-Dom: 11h às 22h",
       highlight: "Tradição da zona norte",
-      image: storeSantana,
+      image: sorocaba,
+      mapsLink: "https://www.google.com/maps/place/Love+For+Sweet+-+Sorocaba/@-23.5360247,-47.4644396,17z/data=!3m1!4b1!4m6!3m5!1s0x94c58b2597399971:0xb7ed877cf0a4e6dc!8m2!3d-23.5360247!4d-47.4644396!16s%2Fg%2F11xmkr8k68?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
       id: 7,
       name: "Love for Sweet Shopping Parque Botucatu",
       address: "Av. Doutor José Amaro Faraldo 1050, Botucatu - SP",
-      phone: "(11) 9999-0006",
-      hours: "Seg-Dom: 9h às 21h",
+      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
       highlight: "Tradição da zona sul",
       image: storeSantana,
+      mapsLink: "https://www.google.com/maps/place/Shopping+Park+Botucatu/@-22.9144088,-48.4661254,17z/data=!3m1!4b1!4m6!3m5!1s0x94c6df23759d49bf:0xa61da4e8682a0cf4!8m2!3d-22.9144088!4d-48.4635505!16s%2Fg%2F1q67q_yjd?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
   ];
   return (
@@ -86,7 +93,7 @@ const UnitsSection = () => {
                 Visite Nossa Loja Mais Próxima
               </h3>
                <p className="opacity-90 font-light text-base">
-                 Experimente pessoalmente nossos doces e descubra por que somos a
+                 Experimente pessoalmente os doces da LOVE e descubra por que somos a
                  escolha preferida para momentos especiais.
                </p>
             </Card>
@@ -132,15 +139,6 @@ const UnitsSection = () => {
                         </p>
                       </div>
 
-                      <div className="flex items-center space-x-3">
-                        <Phone className="w-5 h-5 text-brand-primary flex-shrink-0" />
-                        <a
-                          href={`tel:${store.phone}`}
-                          className="text-brand-primary hover:text-brand-secondary transition-colors"
-                        >
-                          {store.phone}
-                        </a>
-                      </div>
 
                       <div className="flex items-center space-x-3">
                         <Clock className="w-5 h-5 text-brand-primary flex-shrink-0" />
@@ -149,9 +147,16 @@ const UnitsSection = () => {
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-border">
-                      <Button variant="elegant" className="w-full">
-                        Como Chegar
-                      </Button>
+                      <a
+                        href={store.mapsLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Button variant="elegant" className="w-full">
+                          Ver no Maps
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
