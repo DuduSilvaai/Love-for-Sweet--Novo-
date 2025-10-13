@@ -32,7 +32,7 @@ const CarouselSection = () => {
       subtitle: "",
       description:
         "Nossos chocolates são feitos com ingredientes premium selecionados, criando uma experiência sensorial única.",
-      cta: "Descobrir Sabores",
+      cta: "Pedir agora",
       image: bannerBrunches,
       imageMobile: bannerBrunchesMobile,
       gradient: "from-brand-secondary/90 to-brand-accent/90",
@@ -44,7 +44,7 @@ const CarouselSection = () => {
         "Camadas torta de leveza e sabor criadas para transformar o seu dia.",
       description:
         "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
-      cta: "Descobrir Sabores",
+      cta: "Pedir agora",
       image: bannerBolo,
       imageMobile: bannerBoloMobile,
       gradient: "from-brand-secondary/90 to-brand-accent/90",
@@ -55,7 +55,7 @@ const CarouselSection = () => {
       subtitle: "Criado para os verdadeiros amantes de chocolate.",
       description:
         "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
-      cta: "Encomendar Agora",
+      cta: "Pedir agora",
       image: bannerMilkshakes,
       imageMobile: bannerMilkshakesMobile,
       gradient: "from-brand-primary/90 to-brand-secondary/90",
@@ -67,7 +67,7 @@ const CarouselSection = () => {
         "Macarons que transformam qualquer pausa em um momento doce e inesquecível",
       description:
         "Nossos chocolates são feitos com ingredientes premium selecionados, criando uma experiência sensorial única.",
-      cta: "Descobrir Sabores",
+      cta: "Pedir agora",
       image: bannerMacarons,
       imageMobile: bannerMacaronsMobile,
       gradient: "from-brand-secondary/90 to-brand-accent/90",
@@ -124,13 +124,19 @@ const CarouselSection = () => {
                           {slide.id === 1 ? (
                             ""
                           ) : (
-                            <Button
-                              variant="hero"
-                              size="lg"
-                              className="animate-fade-up max-[860px]:w-full"
+                            <a
+                              href="https://www.ifood.com.br/busca?q=love%20for%20sweet"
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
-                              {slide.cta}
-                            </Button>
+                              <Button
+                                variant="hero"
+                                size="lg"
+                                className="animate-fade-up max-[860px]:w-full"
+                              >
+                                {slide.cta}
+                              </Button>
+                            </a>
                           )}
                         </div>
                       </div>

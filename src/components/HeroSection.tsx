@@ -28,19 +28,6 @@ const HeroSection = () => {
           criada para despertar seus sentidos.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button variant="hero" size="lg" className="min-w-[200px]">
-            Explore Nossos Sabores
-          </Button>
-
-          <Button
-            variant="outline"
-            size="lg"
-            className="min-w-[200px] bg-white/10 border-white/30 text-white hover:bg-white/20"
-          >
-            Assista Nossa História
-          </Button>
-        </div>
       </div>
 
       {/* Scroll Indicator */}

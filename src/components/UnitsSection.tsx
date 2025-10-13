@@ -94,7 +94,7 @@ const UnitsSection = () => {
     },
   ];
   return (
-    <section className="py-20 bg-gradient-soft">
+    <section id="unidades" className="py-20 bg-gradient-soft">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* CTA Section (moved to top) */}
@@ -127,11 +127,6 @@ const UnitsSection = () => {
                       alt={`Interior da loja ${store.name}`}
                       className="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
                     />
-                    <div className="absolute top-4 right-4">
-                      <span className="text-sm text-white bg-brand-primary/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        {store.highlight}
-                      </span>
-                    </div>
                   </div>
 
                   {/* Store Content */}

@@ -83,7 +83,7 @@ const Header = () => {
               : "text-white font-light border-none"
           }
         >
-          Visite uma Loja
+          <a href="#unidades">Visite uma Loja</a>
         </Button>
       </div>
     </header>
