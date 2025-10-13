@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import bannerBebidas from "@/assets/banner-bebida.png";
 import bannerBebidasMobile from "@/assets/banner-bebida-mobile.png";
-import bannerMilkshakes from "@/assets/banner-milkshakes.png";
-import bannerMilkshakesMobile from "@/assets/banner-milkshakes-mobile.png";
+import bannerMilkshakes from "@/assets/banner-milkshake.png";
+import bannerMilkshakesMobile from "@/assets/banner-milkshake-mobile.png";
 const CarouselSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -31,6 +31,7 @@ const CarouselSection = () => {
         "Descubra nossas bebidas artesanais, feitas para celebrar o encanto e o frescor que só a Love for Sweet tem.",
       cta: "Encomendar Agora",
       image: bannerBebidas,
+      imageMobile: bannerBebidasMobile,
       gradient: "from-brand-primary/90 to-brand-secondary/90",
     },
     {
@@ -40,7 +41,8 @@ const CarouselSection = () => {
       description:
         "Nossos chocolates são feitos com ingredientes premium selecionados, criando uma experiência sensorial única.",
       cta: "Descobrir Sabores",
-      image: bannerChocolates,
+      image: bannerMilkshakes,
+      imageMobile: bannerMilkshakesMobile,
       gradient: "from-brand-secondary/90 to-brand-accent/90",
     },
   ];
@@ -78,36 +80,27 @@ const CarouselSection = () => {
                       className="absolute inset-0 bg-cover bg-center min-[861px]:bg-right"
                       style={{
                         backgroundImage: `url(${
-                          isMobile && slide.id === 1
-                            ? bannerBebidasMobile
-                            : slide.image
+                          isMobile ? slide.imageMobile : slide.image
                         })`,
                       }}
                     ></div>
 
                     <div className="relative z-10 h-full flex items-start pt-20 max-[860px]:pt-12">
                       <div className="container mx-auto px-12 max-[860px]:px-8 h-full flex flex-col">
-                        <div className="max-w-lg lg:max-w-xl text-white max-[860px]:max-w-full flex-1 flex flex-col justify-between">
-                          <div>
-                            <h2 className="heading-section mb-2 animate-fade-up max-[860px]:text-3xl">
-                              {slide.title}
-                            </h2>
-                            <h3 className="text-lg md:text-2xl lg:text-3xl mb-4 animate-fade-up font-extrabold max-w-md max-[860px]:text-xl max-[860px]:max-w-full">
-                              {slide.subtitle}
-                            </h3>
-                            <p className="hyphens-auto text-elegant mb-8 opacity-90 text-sm md:text-base lg:text-lg animate-fade-up max-w-sm lg:max-w-md max-[860px]:text-base max-[860px]:max-w-full">
-                              {slide.description}
-                            </p>
-                          </div>
-                          <div className="mt-auto pb-12">
-                            <Button
-                              variant="hero"
-                              size="lg"
-                              className="animate-fade-up max-[860px]:w-full"
-                            >
-                              {slide.cta}
-                            </Button>
-                          </div>
+                        <div className="max-w-lg lg:max-w-xl text-white max-[860px]:max-w-full">
+                          <h2 className=" lg:text-6xl sm:text-5xl mb-2 animate-fade-up max-[860px]:text-3xl">
+                            {slide.title}
+                          </h2>
+                          <h3 className="text-lg md:text-2xl lg:text-3xl mb-6 animate-fade-up font-extrabold max-w-md max-[860px]:text-xl max-[860px]:max-w-full">
+                            {slide.subtitle}
+                          </h3>
+                          <Button
+                            variant="hero"
+                            size="lg"
+                            className="animate-fade-up max-[860px]:w-full"
+                          >
+                            {slide.cta}
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -122,7 +115,7 @@ const CarouselSection = () => {
             variant="ghost"
             size="icon"
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
+            className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
           >
             <ChevronLeft className="h-6 w-6" />
           </Button>
@@ -131,7 +124,7 @@ const CarouselSection = () => {
             variant="ghost"
             size="icon"
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
+            className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 rounded-full h-12 w-12"
           >
             <ChevronRight className="h-6 w-6" />
           </Button>
