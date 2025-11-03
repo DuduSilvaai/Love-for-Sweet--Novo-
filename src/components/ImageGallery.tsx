@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { Link, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import vslBackground from "@/assets/vsl-background.jpg";
 import storeInterior from "@/assets/store-interior.jpg";
@@ -93,7 +93,7 @@ const ImageGallery = () => {
           </div>
 
           {/* Image Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {galleryImages.map((image, index) => (
               <Card
                 key={index}
@@ -112,6 +112,15 @@ const ImageGallery = () => {
                 </div>
               </Card>
             ))}
+          </div>
+
+          {/* Ver Cardápio Button */}
+          <div className="text-center">
+            <Link to="/galeria">
+              <Button variant="elegant" size="lg">
+                Ver Cardápio Completo
+              </Button>
+            </Link>
           </div>
 
           {/* Lightbox Modal */}
