@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link, X } from "lucide-react";
+import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import vslBackground from "@/assets/vsl-background.jpg";
 import storeInterior from "@/assets/store-interior.jpg";
