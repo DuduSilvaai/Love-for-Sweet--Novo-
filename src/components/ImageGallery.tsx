@@ -10,11 +10,11 @@ import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import heroDesserts from "@/assets/hero-desserts.jpg";
 import storeItaim from "@/assets/store-itaim.jpg";
 import capuccino from "@/assets/products/capuccino.jpeg";
-import coxinhaMorango from "@/assets/products/coxinha-morango.png";
+import coxinhaMorango from "@/assets/products/gallery/doces-momentos-optimized/coxinha-morango.webp";
 import tortaNinho from "@/assets/products/torta-ninho.jpeg";
-import croissantPistache from "@/assets/products/pistache-croi.png";
-import croissantMorango from "@/assets/products/croassant-morango-nutella.png";
-import redVelvet from "@/assets/products/fatia-supreme-red.png";
+import croissantPistache from "@/assets/products/gallery/doces-momentos-optimized/croissant-pistache.webp";
+import croissantMorango from "@/assets/products/gallery/doces-momentos-optimized/croissant-morango-nutella.webp";
+import redVelvet from "@/assets/products/gallery/bolos-optimized/fatia-supreme-red-velvet-image.webp";
 const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
