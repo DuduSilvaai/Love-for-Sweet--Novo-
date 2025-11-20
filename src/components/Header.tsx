@@ -7,15 +7,22 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isIndexPage = location.pathname === "/";
+  const isFranchisePage = location.pathname === "/franqueados";
 
   useEffect(() => {
+    // Na página de franqueados, sempre manter o estado pós-scroll
+    if (isFranchisePage) {
+      setIsScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isFranchisePage]);
 
   // Função para navegar para seção, seja na mesma página ou após navegar para index
   const handleSectionClick = (

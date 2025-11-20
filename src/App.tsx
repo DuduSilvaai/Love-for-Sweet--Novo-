@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
+import Franchise from "./pages/Franchise";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -47,6 +48,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/galeria" element={<Gallery />} />
+            <Route path="/franqueados" element={<Franchise />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
