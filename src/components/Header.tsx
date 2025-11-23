@@ -1,9 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isIndexPage = location.pathname === "/";
@@ -228,31 +238,196 @@ const Header = () => {
           )}
         </nav>
 
-        <Button
-          variant={isScrolled ? "elegant" : "outline"}
-          size="sm"
-          className={
-            !isScrolled
-              ? "text-primary border-none hover:glow-elegant hover:text-primary transition duration-300"
-              : "text-white font-light border-none"
-          }
-        >
-          {isIndexPage ? (
-            <a
-              href="#unidades"
-              onClick={(e) => handleSectionClick("unidades", e)}
+        <div className="hidden md:block">
+          <Button
+            variant={isScrolled ? "elegant" : "outline"}
+            size="sm"
+            className={
+              !isScrolled
+                ? "text-primary border-none hover:glow-elegant hover:text-primary transition duration-300"
+                : "text-white font-light border-none"
+            }
+          >
+            {isIndexPage ? (
+              <a
+                href="#unidades"
+                onClick={(e) => handleSectionClick("unidades", e)}
+              >
+                Visite uma Loja
+              </a>
+            ) : (
+              <a
+                href="/#unidades"
+                onClick={(e) => handleNavigateToSection("unidades", e)}
+              >
+                Visite uma Loja
+              </a>
+            )}
+          </Button>
+        </div>
+
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              aria-label="Menu"
             >
-              Visite uma Loja
-            </a>
-          ) : (
-            <a
-              href="/#unidades"
-              onClick={(e) => handleNavigateToSection("unidades", e)}
-            >
-              Visite uma Loja
-            </a>
-          )}
-        </Button>
+              <Menu
+                className={`!h-8 !w-8 transition-colors duration-300 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                }`}
+              />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetHeader>
+              <SheetTitle className="text-left">Menu</SheetTitle>
+            </SheetHeader>
+            <div className="mt-6 space-y-4">
+              {isIndexPage ? (
+                <>
+                  <SheetClose asChild>
+                    <a
+                      href="#sobre"
+                      onClick={(e) => {
+                        handleSectionClick("sobre", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Sobre
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/galeria"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Cardápio
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="#unidades"
+                      onClick={(e) => {
+                        handleSectionClick("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Unidades
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="#franquia"
+                      onClick={(e) => {
+                        handleSectionClick("franquia", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Franquia
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      variant="elegant"
+                      className="w-full mt-4"
+                      onClick={(e) => {
+                        const link = e.currentTarget.querySelector("a");
+                        if (link) {
+                          link.click();
+                        }
+                        setIsSheetOpen(false);
+                      }}
+                    >
+                      <a
+                        href="#unidades"
+                        onClick={(e) => handleSectionClick("unidades", e)}
+                        className="block w-full"
+                      >
+                        Visite uma Loja
+                      </a>
+                    </Button>
+                  </SheetClose>
+                </>
+              ) : (
+                <>
+                  <SheetClose asChild>
+                    <a
+                      href="/#sobre"
+                      onClick={(e) => {
+                        handleNavigateToSection("sobre", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Sobre
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/galeria"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Cardápio
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="/#unidades"
+                      onClick={(e) => {
+                        handleNavigateToSection("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Unidades
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="/#franquia"
+                      onClick={(e) => {
+                        handleNavigateToSection("franquia", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Franquia
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      variant="elegant"
+                      className="w-full mt-4"
+                      onClick={(e) => {
+                        const link = e.currentTarget.querySelector("a");
+                        if (link) {
+                          link.click();
+                        }
+                        setIsSheetOpen(false);
+                      }}
+                    >
+                      <a
+                        href="/#unidades"
+                        onClick={(e) => handleNavigateToSection("unidades", e)}
+                        className="block w-full"
+                      >
+                        Visite uma Loja
+                      </a>
+                    </Button>
+                  </SheetClose>
+                </>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

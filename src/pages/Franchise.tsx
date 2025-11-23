@@ -51,7 +51,7 @@ const Franchise = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
               {/* Text Content - Left */}
               <div className="space-y-6 animate-fade-up">
-                <h1 className="heading-hero text-brand-secondary leading-none text-6xl">
+                <h1 className="heading-hero text-brand-secondary leading-none mt-10 text-6xl md:mt-0">
                   Abra sua Love For Sweet — a franquia que une beleza, sabor e
                   lucro.
                 </h1>
