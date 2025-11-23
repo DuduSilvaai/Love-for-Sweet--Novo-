@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MapPin, Menu, Users, Star } from "lucide-react";
 import franqueado from "@/assets/franqueado.png";
+import { Link } from "react-router-dom";
 const QuickActionsSection = () => {
   return (
     <section
@@ -37,13 +38,7 @@ const QuickActionsSection = () => {
                   size="lg"
                   className="text-sm font-semibold px-8 py-4"
                 >
-                  <a
-                    href="http://wa.me/11965048285"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Fale Conosco
-                  </a>
+                  <Link to="/franqueados">Quero ser Franqueado</Link>
                 </Button>
               </div>
             </Card>

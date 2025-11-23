@@ -66,7 +66,7 @@ const Franchise = () => {
                     size="lg"
                     className="text-lg px-8 py-6"
                   >
-                    Quero ser franqueado
+                    Seja um Franqueado
                   </Button>
                 </div>
               </div>
@@ -838,7 +838,7 @@ const Franchise = () => {
                       window.open("https://wa.me/11965048285", "_blank")
                     }
                   >
-                    Fale Conosco
+                    Quero ser Franqueado
                   </Button>
                 </div>
               </Card>
