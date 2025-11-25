@@ -1,13 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isIndexPage = location.pathname === "/";
   const isFranchisePage = location.pathname === "/franqueados";
+
+  // Link para Área de Membros (pode ser alterado conforme necessário)
+  const areaMembrosLink = "#"; // Substitua pelo link desejado
 
   useEffect(() => {
     // Na página de franqueados, sempre manter o estado pós-scroll
@@ -132,9 +145,43 @@ const Header = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden nav:flex items-center space-x-6 lg:space-x-8 text-sm fontlg:text-base">
           {isIndexPage ? (
             <>
+              <a
+                href="#unidades"
+                onClick={(e) => handleSectionClick("unidades", e)}
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                Unidades
+              </a>
+
+              <a
+                href="#unidades"
+                onClick={(e) => handleSectionClick("unidades", e)}
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                Visite uma Loja
+              </a>
+
+              <Link
+                to="/galeria"
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white "
+                }`}
+              >
+                Cardápio
+              </Link>
               <a
                 href="#sobre"
                 onClick={(e) => handleSectionClick("sobre", e)}
@@ -147,61 +194,18 @@ const Header = () => {
                 Sobre
               </a>
               <Link
-                to="/galeria"
+                to="/franqueados"
                 className={`transition-colors duration-300 ${
                   isScrolled
                     ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
+                    : "text-white/80 hover:text-white"
                 }`}
               >
-                Cardápio
+                Ser Franqueado
               </Link>
-              <a
-                href="#unidades"
-                onClick={(e) => handleSectionClick("unidades", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
-                }`}
-              >
-                Unidades
-              </a>
-              <a
-                href="#franquia"
-                onClick={(e) => handleSectionClick("franquia", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
-                }`}
-              >
-                Franquia
-              </a>
             </>
           ) : (
             <>
-              <a
-                href="/#sobre"
-                onClick={(e) => handleNavigateToSection("sobre", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
-                }`}
-              >
-                Sobre
-              </a>
-              <Link
-                to="/galeria"
-                className={`transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
-                }`}
-              >
-                Cardápio
-              </Link>
               <a
                 href="/#unidades"
                 onClick={(e) => handleNavigateToSection("unidades", e)}
@@ -214,45 +218,228 @@ const Header = () => {
                 Unidades
               </a>
               <a
-                href="/#franquia"
-                onClick={(e) => handleNavigateToSection("franquia", e)}
+                href="/#unidades"
+                onClick={(e) => handleNavigateToSection("unidades", e)}
                 className={`transition-colors duration-300 ${
                   isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
                 }`}
               >
-                Franquia
+                Visite uma Loja
               </a>
+              <Link
+                to="/galeria"
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white "
+                }`}
+              >
+                Cardápio
+              </Link>
+              <a
+                href="/#sobre"
+                onClick={(e) => handleNavigateToSection("sobre", e)}
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white "
+                }`}
+              >
+                Sobre
+              </a>
+              <Link
+                to="/franqueados"
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white"
+                }`}
+              >
+                Ser Franqueado
+              </Link>
             </>
           )}
         </nav>
 
-        <Button
-          variant={isScrolled ? "elegant" : "outline"}
-          size="sm"
-          className={
-            !isScrolled
-              ? "text-primary border-none hover:glow-elegant hover:text-primary transition duration-300"
-              : "text-white font-light border-none"
-          }
-        >
-          {isIndexPage ? (
-            <a
-              href="#unidades"
-              onClick={(e) => handleSectionClick("unidades", e)}
+        <div className="hidden nav:block">
+          <Button
+            variant={isScrolled ? "elegant" : "outline"}
+            size="sm"
+            className={
+              !isScrolled
+                ? "text-primary border-none hover:glow-elegant hover:text-primary transition duration-300"
+                : "text-white font-light border-none"
+            }
+            onClick={() => window.open(areaMembrosLink, "_blank")}
+          >
+            Área de Membros
+          </Button>
+        </div>
+
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="flex nav:hidden"
+              aria-label="Menu"
             >
-              Visite uma Loja
-            </a>
-          ) : (
-            <a
-              href="/#unidades"
-              onClick={(e) => handleNavigateToSection("unidades", e)}
-            >
-              Visite uma Loja
-            </a>
-          )}
-        </Button>
+              <Menu
+                className={`!h-8 !w-8 transition-colors duration-300 ${
+                  isScrolled ? "text-foreground" : "text-white"
+                }`}
+              />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetHeader>
+              <SheetTitle className="text-left">Menu</SheetTitle>
+            </SheetHeader>
+            <div className="mt-6 space-y-4">
+              {isIndexPage ? (
+                <>
+                  <SheetClose asChild>
+                    <a
+                      href="#unidades"
+                      onClick={(e) => {
+                        handleSectionClick("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Unidades
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="#unidades"
+                      onClick={(e) => {
+                        handleSectionClick("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Visite uma Loja
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/galeria"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Cardápio
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="#sobre"
+                      onClick={(e) => {
+                        handleSectionClick("sobre", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Sobre
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/franqueados"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Ser Franqueado
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      variant="elegant"
+                      className="w-full mt-4"
+                      onClick={() => {
+                        window.open(areaMembrosLink, "_blank");
+                        setIsSheetOpen(false);
+                      }}
+                    >
+                      Área de Membros
+                    </Button>
+                  </SheetClose>
+                </>
+              ) : (
+                <>
+                  <SheetClose asChild>
+                    <a
+                      href="/#unidades"
+                      onClick={(e) => {
+                        handleNavigateToSection("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Unidades
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="/#unidades"
+                      onClick={(e) => {
+                        handleNavigateToSection("unidades", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Visite uma Loja
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/galeria"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Cardápio
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <a
+                      href="/#sobre"
+                      onClick={(e) => {
+                        handleNavigateToSection("sobre", e);
+                        setIsSheetOpen(false);
+                      }}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Sobre
+                    </a>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      to="/franqueados"
+                      onClick={() => setIsSheetOpen(false)}
+                      className="block py-3 text-lg text-foreground hover:text-primary transition-colors"
+                    >
+                      Ser Franqueado
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      variant="elegant"
+                      className="w-full mt-4"
+                      onClick={() => {
+                        window.open(areaMembrosLink, "_blank");
+                        setIsSheetOpen(false);
+                      }}
+                    >
+                      Área de Membros
+                    </Button>
+                  </SheetClose>
+                </>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

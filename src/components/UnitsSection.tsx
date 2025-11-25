@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MapPin, Clock } from "lucide-react";
+import { AnimatedCard } from "@/components/AnimatedCard";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 // Import store images
 import storeJardins from "@/assets/store-jardins.jpg";
@@ -23,6 +25,11 @@ import sorocaba2 from "@/assets/sorocaba2.png";
 import botucatu from "@/assets/botucatu.png";
 import dionysiaImage from "@/assets/mais.png";
 const UnitsSection = () => {
+  const headerAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-up",
+    threshold: 0.2,
+  });
+
   const stores = [
     {
       id: 1,
@@ -100,7 +107,10 @@ const UnitsSection = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* CTA Section (moved to top) */}
-          <div className="text-center mb-16">
+          <div
+            ref={headerAnimation.ref}
+            className={`text-center mb-16 ${headerAnimation.className}`}
+          >
             <Card className="p-8 bg-gradient-primary text-white shadow-primary border-0 max-w-2xl mx-auto">
               <h3 className="heading-card mb-4">
                 Visite Nossa Loja Mais Próxima
@@ -116,58 +126,62 @@ const UnitsSection = () => {
 
           {/* Stores Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {stores.map((store) => (
-              <Card
+            {stores.map((store, index) => (
+              <AnimatedCard
                 key={store.id}
-                className="overflow-hidden h-full shadow-soft hover:shadow-elegant transition-all duration-300 bg-white border-0"
+                delay={index * 100}
+                animationType="fade-up"
+                threshold={0.1}
               >
-                <div className="flex flex-col h-full">
-                  {/* Store Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={store.image}
-                      alt={`Interior da loja ${store.name}`}
-                      className="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
-                    />
-                  </div>
-
-                  {/* Store Content */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="mb-4">
-                      <h3 className="heading-card text-brand-primary mb-3">
-                        {store.name}
-                      </h3>
+                <Card className="overflow-hidden h-full shadow-soft hover:shadow-elegant transition-all duration-300 bg-white border-0">
+                  <div className="flex flex-col h-full">
+                    {/* Store Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={store.image}
+                        alt={`Interior da loja ${store.name}`}
+                        className="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
+                      />
                     </div>
 
-                    <div className="flex-grow space-y-4">
-                      <div className="flex items-start space-x-3">
-                        <MapPin className="w-5 h-5 text-brand-primary mt-0.5 flex-shrink-0" />
-                        <p className="text-muted-foreground leading-relaxed">
-                          {store.address}
-                        </p>
+                    {/* Store Content */}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="mb-4">
+                        <h3 className="heading-card text-brand-primary mb-3">
+                          {store.name}
+                        </h3>
                       </div>
 
-                      <div className="flex items-center space-x-3">
-                        <Clock className="w-5 h-5 text-brand-primary flex-shrink-0" />
-                        <p className="text-muted-foreground">{store.hours}</p>
+                      <div className="flex-grow space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <MapPin className="w-5 h-5 text-brand-primary mt-0.5 flex-shrink-0" />
+                          <p className="text-muted-foreground leading-relaxed">
+                            {store.address}
+                          </p>
+                        </div>
+
+                        <div className="flex items-center space-x-3">
+                          <Clock className="w-5 h-5 text-brand-primary flex-shrink-0" />
+                          <p className="text-muted-foreground">{store.hours}</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 pt-4 border-t border-border">
+                        <a
+                          href={store.mapsLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <Button variant="elegant" className="w-full">
+                            Ver no Maps
+                          </Button>
+                        </a>
                       </div>
                     </div>
-
-                    <div className="mt-6 pt-4 border-t border-border">
-                      <a
-                        href={store.mapsLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block"
-                      >
-                        <Button variant="elegant" className="w-full">
-                          Ver no Maps
-                        </Button>
-                      </a>
-                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </AnimatedCard>
             ))}
           </div>
 

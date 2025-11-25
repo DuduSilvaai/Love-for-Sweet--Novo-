@@ -18,6 +18,10 @@ export default {
       },
     },
     extend: {
+      screens: {
+        nav: "940px",
+        fontlg: "1000px",
+      },
       fontFamily: {
         serif: ["Cormorant Garamond", "serif"],
         sans: ["Poppins", "sans-serif"],

@@ -15,7 +15,20 @@ import tortaNinho from "@/assets/products/torta-ninho.jpeg";
 import croissantPistache from "@/assets/products/gallery/doces-momentos-optimized/croissant-pistache.webp";
 import croissantMorango from "@/assets/products/gallery/doces-momentos-optimized/croissant-morango-nutella.webp";
 import redVelvet from "@/assets/products/gallery/bolos-optimized/fatia-supreme-red-velvet-image.webp";
+import { AnimatedCard } from "@/components/AnimatedCard";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+
 const ImageGallery = () => {
+  const headerAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-up",
+    threshold: 0.2,
+  });
+
+  const buttonAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-up",
+    threshold: 0.2,
+    delay: 200,
+  });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   // Fechar modal com tecla ESC
@@ -82,7 +95,10 @@ const ImageGallery = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Gallery Header */}
-          <div className="text-center mb-16">
+          <div
+            ref={headerAnimation.ref}
+            className={`text-center mb-16 ${headerAnimation.className}`}
+          >
             <h2 className="heading-section mb-6 text-brand-secondary">
               Nossa Galeria
             </h2>
@@ -96,27 +112,36 @@ const ImageGallery = () => {
           {/* Image Gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {galleryImages.map((image, index) => (
-              <Card
+              <AnimatedCard
                 key={index}
-                className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer group transition-transform duration-300 hover:scale-102"
-                onClick={() => setSelectedImage(index)}
+                delay={index * 100}
+                animationType="fade-up"
+                threshold={0.1}
               >
-                <div className="absolute inset-0">
-                  {/* Imagem principal */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${image.src})` }}
-                  ></div>
+                <Card
+                  className="relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer group transition-transform duration-300 hover:scale-102"
+                  onClick={() => setSelectedImage(index)}
+                >
+                  <div className="absolute inset-0">
+                    {/* Imagem principal */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${image.src})` }}
+                    ></div>
 
-                  {/* Overlay hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                </div>
-              </Card>
+                    {/* Overlay hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                  </div>
+                </Card>
+              </AnimatedCard>
             ))}
           </div>
 
           {/* Ver Cardápio Button */}
-          <div className="text-center">
+          <div
+            ref={buttonAnimation.ref}
+            className={`text-center ${buttonAnimation.className}`}
+          >
             <Link to="/galeria">
               <Button variant="elegant" size="lg">
                 Ver Cardápio Completo

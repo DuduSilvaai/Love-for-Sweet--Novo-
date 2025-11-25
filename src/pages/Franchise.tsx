@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PressSection from "@/components/PressSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -11,6 +12,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import StoreIcon from "@mui/icons-material/Store";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DownloadIcon from "@mui/icons-material/Download";
 import {
   Carousel,
   CarouselContent,
@@ -41,6 +43,9 @@ import macarons from "@/assets/products/gallery/doces-momentos-optimized/macaron
 import topCakeFerrero from "@/assets/products/gallery/doces-momentos-optimized/top-cake-ferrero-rocher.webp";
 
 const Franchise = () => {
+  // Link para a página de CTA (pode ser alterado conforme necessário)
+  const ctaLink = "https://wa.me/11965048285"; // Substitua pelo link desejado
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -51,7 +56,7 @@ const Franchise = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
               {/* Text Content - Left */}
               <div className="space-y-6 animate-fade-up">
-                <h1 className="heading-hero text-brand-secondary leading-none text-6xl">
+                <h1 className="heading-hero text-brand-secondary leading-none mt-10 text-6xl md:mt-0">
                   Abra sua Love For Sweet — a franquia que une beleza, sabor e
                   lucro.
                 </h1>
@@ -65,8 +70,26 @@ const Franchise = () => {
                     variant="elegant"
                     size="lg"
                     className="text-lg px-8 py-6"
+                    onClick={() => {
+                      const el = document.getElementById("por-que");
+                      if (!el) return;
+                      const headerOffset =
+                        (document.querySelector("header") as HTMLElement)
+                          ?.offsetHeight || 0;
+                      const top =
+                        el.getBoundingClientRect().top +
+                        window.scrollY -
+                        headerOffset;
+                      // @ts-ignore
+                      const lenis = window.lenis;
+                      if (lenis && typeof lenis.scrollTo === "function") {
+                        lenis.scrollTo(top);
+                      } else {
+                        window.scrollTo({ top, behavior: "smooth" });
+                      }
+                    }}
                   >
-                    Quero ser franqueado
+                    Seja um Franqueado
                   </Button>
                 </div>
               </div>
@@ -86,7 +109,7 @@ const Franchise = () => {
         </section>
 
         {/* PorQue Section */}
-        <section className="relative py-20 bg-background">
+        <section id="por-que" className="relative py-20 bg-background">
           <div className="container mx-auto px-6">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-12">
@@ -541,6 +564,9 @@ const Franchise = () => {
           </div>
         </section>
 
+        {/* Press Section */}
+        <PressSection />
+
         {/* Depoimentos Section */}
         <section className="relative py-20 bg-background">
           <div className="container mx-auto px-6">
@@ -669,6 +695,49 @@ const Franchise = () => {
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex" />
               </Carousel>
+            </div>
+          </div>
+        </section>
+
+        {/* Download Apresentação Section */}
+        <section className="relative py-20 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <Card className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-rose-50/30 to-stone-50 border-0 shadow-elegant rounded-2xl">
+                <div className="relative p-12 md:p-16">
+                  <div className="text-center mb-8">
+                    <div className="w-20 h-20 mx-auto bg-brand-primary rounded-full flex items-center justify-center mb-6 shadow-soft">
+                      <DownloadIcon
+                        className="text-white"
+                        style={{ fontSize: 40 }}
+                      />
+                    </div>
+                    <h2 className="heading-section text-brand-secondary mb-4">
+                      Apresentação de Franquia
+                    </h2>
+                    <p className="text-elegant text-muted-foreground max-w-2xl mx-auto">
+                      Baixe nossa apresentação completa e conheça todos os
+                      detalhes sobre a oportunidade de se tornar um franqueado
+                      Love For Sweet.
+                    </p>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <Button
+                      variant="elegant"
+                      size="lg"
+                      className="text-lg px-8 py-6"
+                      onClick={() => {
+                        // Adicione aqui o link ou função de download
+                        // Exemplo: window.open('/path/to/presentation.pdf', '_blank');
+                      }}
+                    >
+                      <DownloadIcon className="mr-2" style={{ fontSize: 20 }} />
+                      Baixar Apresentação
+                    </Button>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
         </section>
@@ -834,11 +903,9 @@ const Franchise = () => {
                     variant="hero"
                     size="lg"
                     className="text-base font-semibold px-8 py-6"
-                    onClick={() =>
-                      window.open("https://wa.me/11965048285", "_blank")
-                    }
+                    onClick={() => window.open(ctaLink, "_blank")}
                   >
-                    Fale Conosco
+                    Quero ser Franqueado
                   </Button>
                 </div>
               </Card>
