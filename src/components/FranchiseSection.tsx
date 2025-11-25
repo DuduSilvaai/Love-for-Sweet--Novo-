@@ -3,7 +3,24 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Award, ArrowRight, Play } from "lucide-react";
 import casal from "@/assets/casal2.png";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+
 const FranchiseSection = () => {
+  const headerAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-up",
+    threshold: 0.2,
+  });
+
+  const imageAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "slide-left",
+    threshold: 0.2,
+  });
+
+  const contentAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "slide-right",
+    threshold: 0.2,
+    delay: 150,
+  });
   const benefits = [
     {
       icon: TrendingUp,
@@ -33,7 +50,10 @@ const FranchiseSection = () => {
           {/* VSL Section - moved from VSLSection */}
           <div className="mb-20">
             {/* VSL Header */}
-            <div className="text-center mb-16">
+            <div
+              ref={headerAnimation.ref}
+              className={`text-center mb-16 ${headerAnimation.className}`}
+            >
               <h2 className="heading-section mb-6 text-brand-secondary">
                 Descubra o Segredo dos Nossos Doces
               </h2>
@@ -46,7 +66,10 @@ const FranchiseSection = () => {
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* VSL Video */}
-              <Card className="relative h-[400px] rounded-3xl overflow-hidden shadow-elegant group cursor-pointer">
+              <Card
+                ref={imageAnimation.ref}
+                className={`relative h-[400px] rounded-3xl overflow-hidden shadow-elegant group cursor-pointer ${imageAnimation.className}`}
+              >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${casal})` }}
@@ -54,7 +77,10 @@ const FranchiseSection = () => {
               </Card>
 
               {/* Content */}
-              <div className="space-y-8">
+              <div
+                ref={contentAnimation.ref}
+                className={`space-y-8 ${contentAnimation.className}`}
+              >
                 <div>
                   <h3 className="heading-card text-brand-primary mb-4">
                     A LOVE nasceu de uma paixão.

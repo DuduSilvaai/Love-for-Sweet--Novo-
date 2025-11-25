@@ -10,7 +10,14 @@ import bannerBolo from "@/assets/banner-bolo.png";
 import bannerBoloMobile from "@/assets/banner-bolo-mobile.png";
 import bannerMilkshakes from "@/assets/banner-milkshake.png";
 import bannerMilkshakesMobile from "@/assets/banner-milkshake-mobile.png";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+
 const CarouselSection = () => {
+  const carouselAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-in",
+    threshold: 0.1,
+    rootMargin: "50px",
+  });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -92,7 +99,10 @@ const CarouselSection = () => {
   return (
     <section className="py-20 bg-gradient-soft">
       <div className="container mx-auto px-6">
-        <div className="relative max-w-6xl mx-auto">
+        <div
+          ref={carouselAnimation.ref}
+          className={`relative max-w-6xl mx-auto ${carouselAnimation.className}`}
+        >
           <div className="overflow-hidden rounded-3xl shadow-elegant">
             <div
               className="flex transition-transform duration-700 ease-in-out"

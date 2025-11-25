@@ -3,7 +3,14 @@ import { Card } from "@/components/ui/card";
 import { MapPin, Menu, Users, Star } from "lucide-react";
 import franqueado from "@/assets/franqueado.png";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+
 const QuickActionsSection = () => {
+  const cardAnimation = useScrollAnimation<HTMLDivElement>({
+    animationType: "fade-up",
+    threshold: 0.2,
+  });
+
   return (
     <section
       id="franquia"
@@ -17,7 +24,10 @@ const QuickActionsSection = () => {
           <div className="grid grid-cols-1 gap-8">
             {/* Featured Action - Left Side */}
 
-            <Card className="relative overflow-hidden bg-gradient-primary border-0 shadow-2xl group hover:shadow-3xl transition-all duration-500">
+            <Card
+              ref={cardAnimation.ref}
+              className={`relative overflow-hidden bg-gradient-primary border-0 shadow-2xl group hover:shadow-3xl transition-all duration-500 ${cardAnimation.className}`}
+            >
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-300"></div>
               <div className="relative p-12 text-center text-white">
                 <div className="mb-8">
