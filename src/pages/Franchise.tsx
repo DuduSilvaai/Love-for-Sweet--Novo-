@@ -41,7 +41,9 @@ import croissantMorangoNutella from "@/assets/products/gallery/doces-momentos-op
 import eclairPistache from "@/assets/products/gallery/doces-momentos-optimized/eclair-pistache.webp";
 import macarons from "@/assets/products/gallery/doces-momentos-optimized/macarons.webp";
 import topCakeFerrero from "@/assets/products/gallery/doces-momentos-optimized/top-cake-ferrero-rocher.webp";
-
+import coxinhaMorango from "@/assets/products/gallery/doces-momentos-optimized/coxinha-morango.webp"
+import salgadinhoFrango from "@/assets/products/gallery/salgados-optimized/torta-frango.webp";
+import dulceCoffee from "@/assets/products/gallery/bebidas-optimized/dulce-coffee3.png"
 const Franchise = () => {
   // Link para a página de CTA (pode ser alterado conforme necessário)
   const ctaLink = "https://wa.me/11965048285"; // Substitua pelo link desejado
@@ -452,14 +454,14 @@ const Franchise = () => {
                 <div className="group relative rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300">
                   <div className="aspect-square overflow-hidden">
                     <img
-                      src={fatiaAbacaxiCoco}
-                      alt="Fatia Supreme Abacaxi com Coco"
+                      src={salgadinhoFrango }
+                      alt="Torta de Frango"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                     <p className="text-white font-medium text-sm">
-                      Fatia Supreme Abacaxi com Coco
+                      Torta de Frango
                     </p>
                   </div>
                 </div>
@@ -484,14 +486,14 @@ const Franchise = () => {
                 <div className="group relative rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300">
                   <div className="aspect-square overflow-hidden">
                     <img
-                      src={fatiaChocolatudo}
-                      alt="Fatia Supreme Chocolatudo"
+                      src={coxinhaMorango}
+                      alt="Coxinha de Morango"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                     <p className="text-white font-medium text-sm">
-                      Fatia Supreme Chocolatudo
+                      Coxinha de Morango
                     </p>
                   </div>
                 </div>
@@ -500,14 +502,14 @@ const Franchise = () => {
                 <div className="group relative rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300">
                   <div className="aspect-square overflow-hidden">
                     <img
-                      src={boloRedVelvet}
-                      alt="Bolo de Pote Red Velvet"
+                      src={dulceCoffee}
+                      alt="Dulce Coffee"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                     <p className="text-white font-medium text-sm">
-                      Bolo de Pote Red Velvet
+                      Dulce Coffee
                     </p>
                   </div>
                 </div>
