@@ -145,14 +145,11 @@ import tortaFrango from "@/assets/products/gallery/salgados-optimized/torta-fran
 import totexOvo from "@/assets/products/gallery/salgados-optimized/totex-ovo.webp";
 
 // Importar imagens de Bebidas
-import bebidasAgua from "@/assets/products/gallery/bebidas-optimized/bebidas-agua.png";
-import bebidasCocaCola from "@/assets/products/gallery/bebidas-optimized/bebidas-coca-cola.png";
-import bebidasCocaColaZero from "@/assets/products/gallery/bebidas-optimized/bebidas-coca-cola-zero.png";
-import bebidasGuarana from "@/assets/products/gallery/bebidas-optimized/bebidas-guarana.png";
-import bebidasGuaranaZero from "@/assets/products/gallery/bebidas-optimized/bebidas-guarana-zero.png";
+import capuccino from "@/assets/products/capuccino.jpeg";
 import chocolateGelado from "@/assets/products/gallery/bebidas-optimized/chocolate-gelado-quente.png";
+import coldCoffee from "@/assets/products/gallery/bebidas-optimized/cold-coffe.png";
+import dulceCoffee from "@/assets/products/gallery/bebidas-optimized/dulce-coffee3.png";
 import milkshakes from "@/assets/products/gallery/bebidas-optimized/milkshakes.png";
-import sucos from "@/assets/products/gallery/bebidas-optimized/sucos.png";
 import vitaminaAcai from "@/assets/products/gallery/bebidas-optimized/vitamina-acai.png";
 
 // Componente de Seção de Carrossel
@@ -514,12 +511,9 @@ const Gallery = () => {
       title: "Chocolate Gelado Quente",
       category: "Bebidas",
     },
-    { src: sucos, title: "Sucos", category: "Bebidas" },
-    { src: bebidasCocaCola, title: "Coca-Cola", category: "Bebidas" },
-    { src: bebidasCocaColaZero, title: "Coca-Cola Zero", category: "Bebidas" },
-    { src: bebidasGuarana, title: "Guaraná", category: "Bebidas" },
-    { src: bebidasGuaranaZero, title: "Guaraná Zero", category: "Bebidas" },
-    { src: bebidasAgua, title: "Água", category: "Bebidas" },
+    { src: dulceCoffee, title: "Dulce Coffee", category: "Bebidas" },
+    { src: coldCoffee, title: "Cold Coffee", category: "Bebidas" },
+    { src: capuccino, title: "Capuccino", category: "Bebidas" },
   ];
 
   const categories = [
