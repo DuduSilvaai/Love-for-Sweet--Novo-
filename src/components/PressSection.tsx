@@ -9,7 +9,12 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import gazetaImage from "@/assets/Press/gazeta-image.png";
 import diarioBrasiliaImage from "@/assets/Press/diario-brasilia-image.png";
+import diarioBrasiliaPngImage from "@/assets/Press/diariodebrasilia.png";
 import jornalBelemImage from "@/assets/Press/jornal-belem-image.png";
+import estadaoImage from "@/assets/Press/estadao1.jpeg";
+import pegnImage from "@/assets/Press/estadao2.webp";
+import portalIdeiasImage from "@/assets/Press/portalideias.jpg";
+import redeFoodServiceImage from "@/assets/Press/redefoodservice.jpg";
 
 const PressSection = () => {
   const articles = [
@@ -48,6 +53,66 @@ const PressSection = () => {
       publication: "Jornal do Belém",
       date: "11 de Outubro, 2024",
       link: "https://jornaldobelem.com.br/noticia/51828/franquia-mais-instagramavel-do-brasil-inaugura-4-loja-no-outlet-catarina-em-sao-roque-interior-de-sao-paulo",
+    },
+    {
+      id: 4,
+      image: estadaoImage,
+      headline:
+        "Love for Sweet: cafeteria de São Paulo tem autismo, é instagramável e pretende abrir 20 lojas",
+      description:
+        "Com faturamento de R$2 milhões ao ano e marca se destacando com modelo de negócio 6 em 1, a Love for Sweet conquista o Brasil.",
+      author: "Mirella Joels",
+      publication: "Estadão",
+      date: "08 de Março, 2024",
+      link: "https://www.estadao.com.br/amp/pme/love-for-sweet-cafeteria-sao-paulo-autismo-instagramavel-pretende-abrir-20-lojas-2024-nprei/",
+    },
+    {
+      id: 5,
+      image: pegnImage,
+      headline:
+        "Empreendedora fatura R$ 1,8 milhão com cafeteria rosa inspirada em Paris",
+      description:
+        "Love for Sweet nasceu depois que a empreendedora Ariele Barreto deixou a carreira na área de recursos humanos para se dedicar à maternidade e ao empreendedorismo.",
+      author: "Cleide Assis",
+      publication: "Revista PEGN",
+      date: "26 de Novembro, 2023",
+      link: "https://revistapegn.globo.com/google/amp/franquias/noticia/2023/11/empreendedora-fatura-r-18-milhao-com-cafeteria-rosa-inspirada-em-paris.ghtml",
+    },
+    {
+      id: 6,
+      image: portalIdeiasImage,
+      headline:
+        "Inspirada nas charmosas cafeterias de Paris, franquia Love for Sweet surgiu como distração e se tornou negócio milionário",
+      description:
+        "Ambiente aconchegante e todo cor de rosa marcam o visual das lojas da Love for Sweet, que hoje faturam R$ 2 milhões ao ano e busca por novos investidores na marca instagramável.",
+      author: "Portal Ideiascast",
+      publication: "Portal Ideiascast",
+      date: "02 de Dezembro, 2024",
+      link: "https://portalideiascast.com.br/2024/12/02/inspirada-nas-charmosas-cafeterias-de-paris-franquia-love-for-sweet-surgiu-como-distracao-e-se-tornou-negocio-milionario/?amp=1",
+    },
+    {
+      id: 7,
+      image: redeFoodServiceImage,
+      headline:
+        "Love for Sweet: conheça uma das redes de franquias mais inovadoras e instagramáveis do Brasil que já fatura R$ 2 milhões ao ano",
+      description:
+        "A Love for Sweet é fruto do amor de uma mãe e a paixão por doces está sendo trabalhada para virar a maior rede de 'pink houses' do país.",
+      author: "Tabata Martins",
+      publication: "Rede Food Service",
+      date: "09 de Janeiro, 2025",
+      link: "https://redefoodservice.com.br/2025/01/love-for-sweet-conheca-uma-das-redes-de-franquias-mais-inovadoras-e-instagramaveis-do-brasil-que-ja-fatura-r-2-milhoes-ao-ano/",
+    },
+    {
+      id: 8,
+      image: diarioBrasiliaPngImage,
+      headline:
+        "Após diagnóstico de autismo de um dos filhos e nascimento prematuro do outro, mãe cria franquia mais instagramável do Brasil",
+      description:
+        "A união entre o amor de uma mãe e a paixão por doces renderam uma história cor de rosa e de muita luta à empreendedora Ariele Barreto.",
+      author: "Marcos Ribeiro",
+      publication: "Diário de Brasília",
+      date: "24 de Outubro, 2024",
+      link: "https://www.diariodebrasilia.net.br/noticia/7167/brasilia/noticias/apos-diagnostico-de-autismo-de-um-dos-filhos-e-nascimento-prematuro-do-outro-mae-cria-franquia-mais-instagramavel-do-brasil.html",
     },
   ];
 

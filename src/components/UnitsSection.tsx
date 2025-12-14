@@ -51,17 +51,8 @@ const UnitsSection = () => {
       mapsLink:
         "https://www.google.com/maps/place/Love+For+Sweet+-+Lapa/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cef919fd0e79ad:0x1d1824bd56f4050e!8m2!3d-23.523316!4d-46.7056167!16s%2Fg%2F11szkxltxz?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
-    {
-      id: 3,
-      name: "Love For Sweet  Osasco Campesina",
-      address: "Rua Mônica Maria Hubacher Smith 45, São Paulo - SP",
-      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
-      highlight: "Ambiente jovem e moderno",
-      image: campesina,
-      mapsLink:
-        "https://www.google.com/maps/place/Love+For+Sweet+Osasco/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94ceff179eb99e23:0xf19cd683686a80b2!8m2!3d-23.5444487!4d-46.7661728!16s%2Fg%2F11ydjcmp4l?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
-    },
-    {
+   
+   {
       id: 4,
       name: "Love for Sweet Osasco Dionysia",
       address: "Av. Dionysia Alves Barreto 211, Osasco - SP",

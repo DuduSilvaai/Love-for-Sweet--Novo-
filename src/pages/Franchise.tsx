@@ -91,7 +91,7 @@ const Franchise = () => {
                       }
                     }}
                   >
-                    Seja um Franqueado
+                    Quero ser um Franqueado
                   </Button>
                 </div>
               </div>
@@ -575,10 +575,10 @@ const Franchise = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="heading-section text-brand-secondary mb-4">
-                  O que nossos franqueados dizem
+                  O que pessoas dizem
                 </h2>
                 <p className="text-elegant text-muted-foreground max-w-3xl mx-auto">
-                  Histórias reais de sucesso de quem escolheu a Love For Sweet.
+                  Histórias reais de sucesso de quem visitou a Love For Sweet.
                 </p>
               </div>
 
@@ -767,7 +767,7 @@ const Franchise = () => {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base font-light font-sans">
                     O investimento inicial varia conforme o modelo de loja e
-                    localização. Entre em contato conosco para receber uma
+                    localização. Entre em contato conosco preenchendo o formulário no topo da página para receber uma
                     proposta personalizada com todos os detalhes do
                     investimento.
                   </AccordionContent>
@@ -812,8 +812,8 @@ const Franchise = () => {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base font-light font-sans">
                     Oferecemos suporte completo incluindo treinamento inicial,
-                    suporte operacional contínuo, suporte de marketing,
-                    assistência na montagem da loja e acompanhamento regular
+                    suporte operacional contínuo, suporte de marketing, assistência na prospecção do ponto físico, projeto arquitetônico padronizado 
+                    na montagem da loja e acompanhamento regular
                     para garantir o sucesso da sua unidade.
                   </AccordionContent>
                 </AccordionItem>
@@ -856,7 +856,7 @@ const Franchise = () => {
                     Existe taxa de franquia e royalties?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base font-light font-sans">
-                    Sim, há uma taxa de franquia inicial e royalties mensais.
+                    Sim, há uma taxa de franquia inicial que é paga somente uma vez. Parte dos royalties são reinvestidos em melhorias contínuas e desenvolvimento de novos produtos.
                     Esses valores são reinvestidos em melhorias contínuas da
                     marca, desenvolvimento de novos produtos, marketing nacional
                     e suporte aos franqueados.
@@ -892,7 +892,7 @@ const Franchise = () => {
                       <Star className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-3xl md:text-4xl font-serif mb-4">
-                      Torne-se um Franqueado
+                      Quero ser um Franqueado
                     </h3>
                     <p className="text-lg md:text-xl text-white/90 mb-8 font-light leading-relaxed max-w-2xl mx-auto font-sans">
                       Junte-se à rede que está conquistando o Brasil com
@@ -907,7 +907,7 @@ const Franchise = () => {
                     className="text-base font-semibold px-8 py-6"
                     onClick={() => window.open(ctaLink, "_blank")}
                   >
-                    Quero ser Franqueado
+                    Quero ser um Franqueado
                   </Button>
                 </div>
               </Card>
