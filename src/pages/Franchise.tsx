@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PressSection from "@/components/PressSection";
@@ -33,6 +34,8 @@ import fatiaRedVelvet from "@/assets/products/gallery/bolos-optimized/fatia-supr
 import fatiaAbacaxiCoco from "@/assets/products/gallery/bolos-optimized/fatia-supreme-abacaxi-com-coco-image.webp";
 import fatiaPistache from "@/assets/products/gallery/bolos-optimized/fatia-supreme-de-pistache-image.webp";
 import fatiaChocolatudo from "@/assets/products/gallery/bolos-optimized/fatia-supreme-chocolatudo-image.webp";
+// Importar imagens de avaliações do Google (fotos de perfil) removidas para usar padrão visual
+
 import boloRedVelvet from "@/assets/products/gallery/bolos-optimized/bolo-de-pote-red-velvet-image.webp";
 import boloNinhoNutella from "@/assets/products/gallery/bolos-optimized/bolo-de-pote-ninho-com-nutella-image.webp";
 import tortaPinkLove from "@/assets/products/gallery/tortas-optimized/torta-pink-love.webp";
@@ -44,12 +47,118 @@ import topCakeFerrero from "@/assets/products/gallery/doces-momentos-optimized/t
 import coxinhaMorango from "@/assets/products/gallery/doces-momentos-optimized/coxinha-morango.webp"
 import salgadinhoFrango from "@/assets/products/gallery/salgados-optimized/torta-frango.webp";
 import dulceCoffee from "@/assets/products/gallery/bebidas-optimized/dulce-coffee3.png"
+import fotoCase1 from '../cases/foto case 1.jpeg';
+import fotoCase5 from '../cases/foto case 5.jpeg';
+import fotoCase6 from '../cases/foto case 6.jpeg';
+import fotoCase7 from '../cases/foto case 7.jpeg';
+import fotoCase8 from '../cases/foto case 8.jpeg';
+import fotoCase12 from '../cases/foto case 12.jpeg';
+import fotoCase13 from '../cases/foto case 13.jpeg';
+import fotoCase15 from '../cases/foto case 15.jpeg';
+import FranchiseModal from "@/components/FranchiseModal";
+
+const testimonials = [
+  {
+    name: "INGRID VITORIA",
+    text: "Ambiente maravilhoso, equipe espetacular, e a comida um show a parte",
+    rating: 5,
+    image: fotoCase1,
+    initials: "IV"
+  },
+  {
+    name: "Paola Bitencourt",
+    text: "Café gostoso e surpresa de uva ótimo tamanho",
+    rating: 5,
+    image: "",
+    initials: "PB"
+  },
+  {
+    name: "Bruno Martinelli",
+    text: "Experiência muito boa, ótimos doces e salgados",
+    rating: 5,
+    image: "",
+    initials: "BM"
+  },
+  {
+    name: "Agatha Dell Amo",
+    text: "Ambiente espetacular de lindo, boa comida com bons ingredientes.",
+    rating: 5,
+    image: "",
+    initials: "AD"
+  },
+  {
+    name: "Priscila Sales",
+    text: "Lugar aconchegante, várias opções de doces e salgados... super recomendado",
+    rating: 5,
+    image: fotoCase5,
+    initials: "PS"
+  },
+  {
+    name: "Yuri Remedio",
+    text: "Melhor lugar da região para um ótimo doce, salgado e café",
+    rating: 5,
+    image: fotoCase6,
+    initials: "YR"
+  },
+  {
+    name: "Solange Passos",
+    text: "O café uma delícia, ambiente bonito, lindas fotos e boa localização.",
+    rating: 5,
+    image: fotoCase7,
+    initials: "SP"
+  },
+  {
+    name: "Sheila Evangelista",
+    text: "Muita variedade de sobremesa, cafés, salgados e bebidas",
+    rating: 5,
+    image: fotoCase8,
+    initials: "SE"
+  },
+  {
+    name: "Jaqueline McKee",
+    text: "ótimos preços, torta de frango maravilhosa!",
+    rating: 5,
+    image: "",
+    initials: "JM"
+  },
+  {
+    name: "Quebra Preços",
+    text: "Muito top, tivemos que levar os bolos de pote pra família",
+    rating: 5,
+    image: "",
+    initials: "QP"
+  },
+  {
+    name: "Greicy Mendes",
+    text: "Lugar maravilhoso e atendentes ótimas❤️ doces incríveis",
+    rating: 5,
+    image: fotoCase12,
+    initials: "GM"
+  },
+  {
+    name: "Sabrina T Santalucia",
+    text: "Doces maravilhosos, muito capricho na decoração do local e apresentação!",
+    rating: 5,
+    image: fotoCase13,
+    initials: "SS"
+  },
+  {
+    name: "Cleber Soares",
+    text: "Sobremesa deliciosa,doce na medida certa, com ingredientes de qualidade",
+    rating: 5,
+    image: fotoCase15,
+    initials: "CS"
+  }
+];
+
 const Franchise = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // Link para a página de CTA (pode ser alterado conforme necessário)
   const ctaLink = "https://wa.me/11965048285"; // Substitua pelo link desejado
 
   return (
     <div className="min-h-screen">
+      <FranchiseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header />
       <main>
         {/* Hero Section */}
@@ -72,24 +181,7 @@ const Franchise = () => {
                     variant="elegant"
                     size="lg"
                     className="text-lg px-8 py-6"
-                    onClick={() => {
-                      const el = document.getElementById("por-que");
-                      if (!el) return;
-                      const headerOffset =
-                        (document.querySelector("header") as HTMLElement)
-                          ?.offsetHeight || 0;
-                      const top =
-                        el.getBoundingClientRect().top +
-                        window.scrollY -
-                        headerOffset;
-                      // @ts-ignore
-                      const lenis = window.lenis;
-                      if (lenis && typeof lenis.scrollTo === "function") {
-                        lenis.scrollTo(top);
-                      } else {
-                        window.scrollTo({ top, behavior: "smooth" });
-                      }
-                    }}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     Quero ser um Franqueado
                   </Button>
@@ -454,7 +546,7 @@ const Franchise = () => {
                 <div className="group relative rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all duration-300">
                   <div className="aspect-square overflow-hidden">
                     <img
-                      src={salgadinhoFrango }
+                      src={salgadinhoFrango}
                       alt="Torta de Frango"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
@@ -582,117 +674,41 @@ const Franchise = () => {
                 </p>
               </div>
 
-              <Carousel className="w-full">
+              <Carousel
+                opts={{
+                  loop: true,
+                  align: "start",
+                }}
+                className="w-full"
+              >
                 <CarouselContent>
-                  {/* Depoimento 1 */}
-                  <CarouselItem>
-                    <div className="bg-white rounded-2xl p-8 shadow-soft">
-                      <div className="flex items-start gap-4 mb-6">
-                        <Avatar className="w-16 h-16">
-                          <AvatarImage src="" alt="Maria Silva" />
-                          <AvatarFallback className="bg-brand-primary text-white text-lg">
-                            MS
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="font-semibold text-brand-secondary text-lg">
-                            Maria Silva
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            Franqueada - Barueri, SP
-                          </p>
+                  {testimonials.map((testimonial, index) => (
+                    <CarouselItem key={index}>
+                      <div className="bg-white rounded-2xl p-8 shadow-soft">
+                        <div className="flex items-start gap-4 mb-4">
+                          <Avatar className="w-16 h-16">
+                            <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                            <AvatarFallback className="bg-brand-primary text-white text-lg">
+                              {testimonial.initials}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-brand-secondary text-lg">
+                              {testimonial.name}
+                            </h3>
+                            <div className="flex gap-1 mt-1">
+                              {[...Array(testimonial.rating)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              ))}
+                            </div>
+                          </div>
                         </div>
+                        <p className="text-muted-foreground leading-relaxed">
+                          "{testimonial.text}"
+                        </p>
                       </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        "A Love For Sweet transformou minha vida. Em menos de 6
-                        meses já estava no lucro. O suporte da franqueadora é
-                        excepcional e os produtos são realmente diferenciados.
-                        Recomendo de olhos fechados!"
-                      </p>
-                    </div>
-                  </CarouselItem>
-
-                  {/* Depoimento 2 */}
-                  <CarouselItem>
-                    <div className="bg-white rounded-2xl p-8 shadow-soft">
-                      <div className="flex items-start gap-4 mb-6">
-                        <Avatar className="w-16 h-16">
-                          <AvatarImage src="" alt="João Santos" />
-                          <AvatarFallback className="bg-brand-primary text-white text-lg">
-                            JS
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="font-semibold text-brand-secondary text-lg">
-                            João Santos
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            Franqueado - Pinheiros, SP
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        "O processo de abertura foi muito simples e o
-                        treinamento completo. A marca tem um apelo visual
-                        incrível que atrai clientes naturalmente. Estou muito
-                        satisfeito com minha escolha!"
-                      </p>
-                    </div>
-                  </CarouselItem>
-
-                  {/* Depoimento 3 */}
-                  <CarouselItem>
-                    <div className="bg-white rounded-2xl p-8 shadow-soft">
-                      <div className="flex items-start gap-4 mb-6">
-                        <Avatar className="w-16 h-16">
-                          <AvatarImage src="" alt="Ana Costa" />
-                          <AvatarFallback className="bg-brand-primary text-white text-lg">
-                            AC
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="font-semibold text-brand-secondary text-lg">
-                            Ana Costa
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            Franqueada - Vila Madalena, SP
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        "A margem de lucro é excelente e o ticket médio
-                        surpreende. Os clientes adoram os produtos e sempre
-                        voltam. É um negócio que realmente funciona!"
-                      </p>
-                    </div>
-                  </CarouselItem>
-
-                  {/* Depoimento 4 */}
-                  <CarouselItem>
-                    <div className="bg-white rounded-2xl p-8 shadow-soft">
-                      <div className="flex items-start gap-4 mb-6">
-                        <Avatar className="w-16 h-16">
-                          <AvatarImage src="" alt="Carlos Oliveira" />
-                          <AvatarFallback className="bg-brand-primary text-white text-lg">
-                            CO
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="font-semibold text-brand-secondary text-lg">
-                            Carlos Oliveira
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            Franqueado - Moema, SP
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed">
-                        "A padronização é muito fácil de seguir e o suporte
-                        contínuo faz toda a diferença. Em um ano já estou
-                        pensando em abrir uma segunda unidade!"
-                      </p>
-                    </div>
-                  </CarouselItem>
+                    </CarouselItem>
+                  ))}
                 </CarouselContent>
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex" />
@@ -812,7 +828,7 @@ const Franchise = () => {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-base font-light font-sans">
                     Oferecemos suporte completo incluindo treinamento inicial,
-                    suporte operacional contínuo, suporte de marketing, assistência na prospecção do ponto físico, projeto arquitetônico padronizado 
+                    suporte operacional contínuo, suporte de marketing, assistência na prospecção do ponto físico, projeto arquitetônico padronizado
                     na montagem da loja e acompanhamento regular
                     para garantir o sucesso da sua unidade.
                   </AccordionContent>
@@ -905,7 +921,7 @@ const Franchise = () => {
                     variant="hero"
                     size="lg"
                     className="text-base font-semibold px-8 py-6"
-                    onClick={() => window.open(ctaLink, "_blank")}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     Quero ser um Franqueado
                   </Button>
@@ -916,7 +932,7 @@ const Franchise = () => {
         </section>
       </main>
       <Footer />
-    </div>
+    </div >
   );
 };
 
