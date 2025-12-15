@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import useEmblaCarousel from "embla-carousel-react";
 import heroDesserts from "@/assets/hero-desserts.jpg";
 import bannerChocolates from "@/assets/banner-chocolates.jpg";
+import bannerBrunch from "@/assets/Press/banner-brunch.png";
 
 // Componente para Lazy Loading de imagens
 const LazyImage = ({ src, alt = "" }: { src: string; alt?: string }) => {
@@ -534,22 +535,11 @@ const Gallery = () => {
 
       {/* Banner Top Section */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-2">
-          <div className="absolute inset-0 bg-black/20"></div>
-          {/* Left side - Desserts image */}
-          <div
-            className="bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroDesserts})` }}
-          >
-            <div className="absolute inset-0 bg-black/20"></div>
-          </div>
-          {/* Right side - Chocolates image */}
-          <div
-            className="bg-cover bg-center"
-            style={{ backgroundImage: `url(${bannerChocolates})` }}
-          >
-            <div className="absolute inset-0 bg-black/20"></div>
-          </div>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${bannerBrunch})` }}
+        >
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         {/* Overlay Content */}

@@ -56,6 +56,7 @@ import fotoCase12 from '../cases/foto case 12.jpeg';
 import fotoCase13 from '../cases/foto case 13.jpeg';
 import fotoCase15 from '../cases/foto case 15.jpeg';
 import FranchiseModal from "@/components/FranchiseModal";
+import presentationPdf from "@/assets/Press/Seja um Franqueado Love.pdf.pdf";
 
 const testimonials = [
   {
@@ -741,18 +742,16 @@ const Franchise = () => {
                   </div>
 
                   <div className="flex justify-center">
-                    <Button
-                      variant="elegant"
-                      size="lg"
-                      className="text-lg px-8 py-6"
-                      onClick={() => {
-                        // Adicione aqui o link ou função de download
-                        // Exemplo: window.open('/path/to/presentation.pdf', '_blank');
-                      }}
-                    >
-                      <DownloadIcon className="mr-2" style={{ fontSize: 20 }} />
-                      Baixar Apresentação
-                    </Button>
+                    <a href={presentationPdf} download="Apresentacao_Love_For_Sweet.pdf" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        variant="elegant"
+                        size="lg"
+                        className="text-lg px-8 py-6"
+                      >
+                        <DownloadIcon className="mr-2" style={{ fontSize: 20 }} />
+                        Baixar Apresentação
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </Card>

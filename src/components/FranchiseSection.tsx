@@ -4,8 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Award, ArrowRight, Play } from "lucide-react";
 import casal from "@/assets/casal2.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useNavigate } from "react-router-dom";
 
 const FranchiseSection = () => {
+  const navigate = useNavigate();
+
   const headerAnimation = useScrollAnimation<HTMLDivElement>({
     animationType: "fade-up",
     threshold: 0.2,
@@ -115,9 +118,7 @@ const FranchiseSection = () => {
                   <Button
                     variant="elegant"
                     size="lg"
-                    onClick={() =>
-                      window.open("https://wa.me/11965048285", "_blank")
-                    }
+                    onClick={() => navigate("/franqueados")}
                   >
                     Conhecer Nossa História
                   </Button>
