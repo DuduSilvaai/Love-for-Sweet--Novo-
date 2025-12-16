@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
-import heroImage from "@/assets/hero-image.png";
+import heroImage from "@/assets/Press/new-hero.png";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -11,7 +11,7 @@ const HeroSection = () => {
           backgroundImage: `url(${heroImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
       {/* Hero Content */}

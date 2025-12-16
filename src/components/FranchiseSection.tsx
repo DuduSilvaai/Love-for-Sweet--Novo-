@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Award, ArrowRight, Play } from "lucide-react";
-import casal from "@/assets/casal2.png";
+import franchiseImage from "@/assets/Press/franqueado-image.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useNavigate } from "react-router-dom";
 
@@ -74,8 +74,8 @@ const FranchiseSection = () => {
                 className={`relative h-[400px] rounded-3xl overflow-hidden shadow-elegant group cursor-pointer ${imageAnimation.className}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${casal})` }}
+                  className="absolute inset-0 bg-cover bg-top"
+                  style={{ backgroundImage: `url(${franchiseImage})` }}
                 ></div>
               </Card>
 

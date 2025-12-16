@@ -28,7 +28,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import storeInterior from "@/assets/store-interior.jpg";
+import storeInterior from "@/assets/Press/franqueado-image.png";
 // Importar imagens de produtos principais
 import fatiaRedVelvet from "@/assets/products/gallery/bolos-optimized/fatia-supreme-red-velvet-image.webp";
 import fatiaAbacaxiCoco from "@/assets/products/gallery/bolos-optimized/fatia-supreme-abacaxi-com-coco-image.webp";
@@ -195,7 +195,7 @@ const Franchise = () => {
                   <img
                     src={storeInterior}
                     alt="Unidade Love for Sweet"
-                    className="w-full h-[500px] object-cover"
+                    className="w-full h-[500px] object-cover object-top"
                   />
                 </div>
               </div>
