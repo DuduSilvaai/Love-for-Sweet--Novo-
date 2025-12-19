@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Users, Award, ArrowRight, Play } from "lucide-react";
 import franchiseImage from "@/assets/Press/franqueado-image.png";
+import historyImage from "@/assets/casal2.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { useNavigate } from "react-router-dom";
 
@@ -75,7 +76,7 @@ const FranchiseSection = () => {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-top"
-                  style={{ backgroundImage: `url(${franchiseImage})` }}
+                  style={{ backgroundImage: `url(${historyImage})` }}
                 ></div>
               </Card>
 

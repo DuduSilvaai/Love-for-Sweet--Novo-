@@ -116,9 +116,8 @@ const CarouselSection = () => {
                     <div
                       className="absolute inset-0 bg-cover bg-center min-[861px]:bg-right"
                       style={{
-                        backgroundImage: `url(${
-                          isMobile ? slide.imageMobile : slide.image
-                        })`,
+                        backgroundImage: `url("${isMobile ? slide.imageMobile : slide.image
+                          }")`,
                       }}
                     ></div>
 
@@ -182,11 +181,10 @@ const CarouselSection = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
                     ? "bg-brand-primary brightness-125"
                     : "bg-muted border border-gray-300 hover:bg-brand-primary/50 hover:border-brand-primary/50"
-                }`}
+                  }`}
               />
             ))}
           </div>

@@ -54,7 +54,7 @@ const LazyImage = ({ src, alt = "" }: { src: string; alt?: string }) => {
       ref={imgRef}
       className="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
       style={{
-        backgroundImage: isLoaded ? `url(${src})` : "none",
+        backgroundImage: isLoaded ? `url("${src}")` : "none",
         backgroundColor: isLoaded ? "transparent" : "#f3f4f6",
       }}
     >
@@ -152,6 +152,18 @@ import coldCoffee from "@/assets/products/gallery/bebidas-optimized/cold-coffe.p
 import dulceCoffee from "@/assets/products/gallery/bebidas-optimized/dulce-coffee3.png";
 import milkshakes from "@/assets/products/gallery/bebidas-optimized/milkshakes.png";
 import vitaminaAcai from "@/assets/products/gallery/bebidas-optimized/vitamina-acai.png";
+
+// Carregamento dinâmico das imagens de Encomendas
+const encomendaImages = import.meta.glob("@/assets/Encomendas/*.{jpg,JPG,png,PNG}", { eager: true });
+const dynamicEncomendas = Object.entries(encomendaImages).map(([path, module]: any) => {
+  const filename = path.split('/').pop() || '';
+  const title = filename.replace(/\.[^/.]+$/, "");
+  return {
+    src: module.default,
+    title,
+    category: "Encomendas"
+  };
+});
 
 // Componente de Seção de Carrossel
 const ProductCarouselSection = ({ title, items, category }: any) => {
@@ -515,9 +527,12 @@ const Gallery = () => {
     { src: dulceCoffee, title: "Dulce Coffee", category: "Bebidas" },
     { src: coldCoffee, title: "Cold Coffee", category: "Bebidas" },
     { src: capuccino, title: "Capuccino", category: "Bebidas" },
+
+    ...dynamicEncomendas,
   ];
 
   const categories = [
+    { title: "Encomendas", key: "Encomendas" },
     { title: "Bolos", key: "Bolos" },
     { title: "Tortas", key: "Tortas" },
     { title: "Doces Momentos", key: "Doces Momentos" },
@@ -537,7 +552,7 @@ const Gallery = () => {
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${bannerBrunch})` }}
+          style={{ backgroundImage: `url("${bannerBrunch}")` }}
         >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>

@@ -126,7 +126,7 @@ const ImageGallery = () => {
                     {/* Imagem principal */}
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                      style={{ backgroundImage: `url(${image.src})` }}
+                      style={{ backgroundImage: `url("${image.src}")` }}
                     ></div>
 
                     {/* Overlay hover */}
@@ -175,7 +175,7 @@ const ImageGallery = () => {
                   <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${galleryImages[selectedImage].src})`,
+                      backgroundImage: `url("${galleryImages[selectedImage].src}")`,
                     }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/40 to-transparent"></div>
