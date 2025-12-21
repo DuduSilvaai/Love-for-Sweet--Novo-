@@ -19,7 +19,7 @@ const Header = () => {
   const isIndexPage = location.pathname === "/";
   const isFranchisePage = location.pathname === "/franqueados";
 
-  // Link para Área de Membros (pode ser alterado conforme necessário)
+  // Link para Sou Franqueado (pode ser alterado conforme necessário)
   const areaMembrosLink = "#"; // Substitua pelo link desejado
 
   useEffect(() => {
@@ -120,11 +120,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-background/80 backdrop-blur-sm border-b border-border"
           : "bg-transparent border-b border-transparent"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="">
@@ -151,11 +150,10 @@ const Header = () => {
               <a
                 href="#unidades"
                 onClick={(e) => handleSectionClick("unidades", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Unidades
               </a>
@@ -163,43 +161,39 @@ const Header = () => {
               <a
                 href="#unidades"
                 onClick={(e) => handleSectionClick("unidades", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Visite uma Loja
               </a>
 
               <Link
                 to="/galeria"
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white "
-                }`}
+                  }`}
               >
                 Cardápio
               </Link>
               <a
                 href="#sobre"
                 onClick={(e) => handleSectionClick("sobre", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white "
-                }`}
+                  }`}
               >
                 Sobre
               </a>
               <Link
                 to="/franqueados"
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Ser Franqueado
               </Link>
@@ -209,53 +203,48 @@ const Header = () => {
               <a
                 href="/#unidades"
                 onClick={(e) => handleNavigateToSection("unidades", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Unidades
               </a>
               <a
                 href="/#unidades"
                 onClick={(e) => handleNavigateToSection("unidades", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Visite uma Loja
               </a>
               <Link
                 to="/galeria"
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white "
-                }`}
+                  }`}
               >
                 Cardápio
               </Link>
               <a
                 href="/#sobre"
                 onClick={(e) => handleNavigateToSection("sobre", e)}
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white "
-                }`}
+                  }`}
               >
                 Sobre
               </a>
               <Link
                 to="/franqueados"
-                className={`transition-colors duration-300 ${
-                  isScrolled
+                className={`transition-colors duration-300 ${isScrolled
                     ? "text-muted-foreground hover:text-primary"
                     : "text-white/80 hover:text-white"
-                }`}
+                  }`}
               >
                 Ser Franqueado
               </Link>
@@ -274,7 +263,7 @@ const Header = () => {
             }
             onClick={() => window.open(areaMembrosLink, "_blank")}
           >
-            Área de Membros
+            Sou Franqueado
           </Button>
         </div>
 
@@ -287,9 +276,8 @@ const Header = () => {
               aria-label="Menu"
             >
               <Menu
-                className={`!h-8 !w-8 transition-colors duration-300 ${
-                  isScrolled ? "text-foreground" : "text-white"
-                }`}
+                className={`!h-8 !w-8 transition-colors duration-300 ${isScrolled ? "text-foreground" : "text-white"
+                  }`}
               />
             </Button>
           </SheetTrigger>
@@ -363,7 +351,7 @@ const Header = () => {
                         setIsSheetOpen(false);
                       }}
                     >
-                      Área de Membros
+                      Sou Franqueado
                     </Button>
                   </SheetClose>
                 </>
@@ -432,7 +420,7 @@ const Header = () => {
                         setIsSheetOpen(false);
                       }}
                     >
-                      Área de Membros
+                      Sou Franqueado
                     </Button>
                   </SheetClose>
                 </>
