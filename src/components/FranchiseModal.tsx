@@ -142,8 +142,9 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
             console.log("DEBUG: Payload FINAL preparado:", payload);
 
             // Chamada Real ao Backend Python (Flask)
-            // Usando IP 127.0.0.1 para evitar problemas de resolução de localhost no Node/Browser
-            const response = await fetch('http://127.0.0.1:5000/api/email', {
+            // Usa variável de ambiente para a URL da API (desenvolvimento ou produção)
+            const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+            const response = await fetch(`${API_URL}/api/email`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

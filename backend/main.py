@@ -10,7 +10,14 @@ from email.mime.multipart import MIMEMultipart
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Habilita CORS para permitir chamadas do React (localhost:5173 -> localhost:5000)
+
+# CORS: Permitir Frontend local e produção
+CORS(app, origins=[
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://www.loveforsweet.com.br",
+    "https://loveforsweet.com.br"
+])
 
 def enviar_email_backend(dados):
     # --- CONFIGURAÇÕES VIA VARIÁVEIS DE AMBIENTE ---
