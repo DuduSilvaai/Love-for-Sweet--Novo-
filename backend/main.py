@@ -1,19 +1,24 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+# Carrega as variáveis do arquivo .env (para uso local)
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # Habilita CORS para permitir chamadas do React (localhost:5173 -> localhost:5000)
 
 def enviar_email_backend(dados):
-    # --- CONFIGURAÇÕES HARDCODED ---
-    SMTP_SERVER = "smtp.gmail.com"
-    SMTP_PORT = 465  # SSL
-    EMAIL_REMETENTE = "noreply.loveforsweet@gmail.com"
-    EMAIL_SENHA_APP = "eowv jcir jizw iyng".replace(" ", "")
-    EMAIL_DESTINATARIO = "loveforsweet.franchising@gmail.com"
+    # --- CONFIGURAÇÕES VIA VARIÁVEIS DE AMBIENTE ---
+    SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+    SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))  # SSL
+    EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
+    EMAIL_SENHA_APP = os.getenv("EMAIL_SENHA_APP")
+    EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO")
 
     try:
         print(f"--- [BACKEND] INICIANDO ENVIO: {dados.get('nome')} ---")
