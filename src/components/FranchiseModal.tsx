@@ -144,13 +144,21 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
             // Chamada Real ao Backend Python (Flask)
             // Usa variável de ambiente para a URL da API (desenvolvimento ou produção)
             const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+            
+            // Configuração para lidar com cold start do Render.com
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 segundos timeout
+            
             const response = await fetch(`${API_URL}/api/email`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(payload),
+                signal: controller.signal
             });
+            
+            clearTimeout(timeoutId);
 
             const data = await response.json();
             const respostaBackend = data.message; // Espera "OK" ou mensagem de erro
@@ -176,10 +184,21 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
             }
         } catch (error) {
             console.error("ERRO CRÍTICO AO ENVIAR:", error);
-            // Debug solicitado: Erro Fatal
-            const errorMsg = error instanceof Error ? error.message : String(error);
-            console.error(`ERRO FATAL NA LEITURA: ${errorMsg}`);
-            alert(`Erro interno: ${errorMsg}`);
+            
+            let errorMessage = "Erro interno desconhecido";
+            
+            if (error instanceof Error) {
+                if (error.name === 'AbortError') {
+                    errorMessage = "Timeout: O servidor demorou muito para responder. Tente novamente em alguns segundos.";
+                } else if (error.message.includes('Failed to fetch')) {
+                    errorMessage = "Erro de conexão: Verifique sua internet ou tente novamente em alguns segundos.";
+                } else {
+                    errorMessage = error.message;
+                }
+            }
+            
+            console.error(`ERRO FATAL NA LEITURA: ${errorMessage}`);
+            alert(`Erro: ${errorMessage}`);
         } finally {
             setIsLoading(false);
         }
@@ -369,7 +388,14 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
                                 className="flex-1 bg-brand-primary hover:bg-brand-primary/90 text-white"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Enviando...' : 'Enviar Solicitação'}
+                                {isLoading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        Enviando...
+                                    </div>
+                                ) : (
+                                    'Enviar Solicitação'
+                                )}
                             </Button>
                         </div>
 
