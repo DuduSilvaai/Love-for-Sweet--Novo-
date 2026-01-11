@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import vslBackground from "@/assets/vsl-background.jpg";
 import storeInterior from "@/assets/store-interior.jpg";
 import bannerWedding from "@/assets/banner-wedding.jpg";
@@ -17,6 +17,55 @@ import croissantMorango from "@/assets/products/gallery/doces-momentos-optimized
 import redVelvet from "@/assets/products/gallery/bolos-optimized/fatia-supreme-red-velvet-image.webp";
 import { AnimatedCard } from "@/components/AnimatedCard";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+
+// Componente de imagem com lazy loading para a galeria
+const LazyGalleryImage = ({ src }: { src: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "100px" }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !isLoaded) {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setIsLoaded(true);
+    }
+  }, [isInView, src, isLoaded]);
+
+  return (
+    <div
+      ref={imgRef}
+      className={`absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+      style={{ backgroundImage: isLoaded ? `url("${src}")` : 'none' }}
+    >
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse">
+          <div className="w-8 h-8 border-3 border-brand-primary border-t-transparent rounded-full animate-spin opacity-50" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ImageGallery = () => {
   const headerAnimation = useScrollAnimation<HTMLDivElement>({
@@ -123,11 +172,8 @@ const ImageGallery = () => {
                   onClick={() => setSelectedImage(index)}
                 >
                   <div className="absolute inset-0">
-                    {/* Imagem principal */}
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                      style={{ backgroundImage: `url("${image.src}")` }}
-                    ></div>
+                    {/* Imagem principal com lazy loading */}
+                    <LazyGalleryImage src={image.src} />
 
                     {/* Overlay hover */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>

@@ -11,6 +11,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+// Import logos corretamente para funcionar em produção
+import logoPink from "@/assets/logo-pink.png";
+import logoWhite from "@/assets/logo-white.png";
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -121,8 +125,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-background/80 backdrop-blur-sm border-b border-border"
-          : "bg-transparent border-b border-transparent"
+        ? "bg-background/80 backdrop-blur-sm border-b border-border"
+        : "bg-transparent border-b border-transparent"
         }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -130,13 +134,13 @@ const Header = () => {
           <Link to="/">
             {isScrolled ? (
               <img
-                src="./src/assets/logo-pink.png"
+                src={logoPink}
                 alt="Love for Sweet"
                 className="h-[40px] transition-transform duration-300 hover:scale-105"
               />
             ) : (
               <img
-                src="./src/assets/logo-white.png"
+                src={logoWhite}
                 alt="Love for Sweet"
                 className="h-[40px] transition-transform duration-300 hover:scale-105"
               />
@@ -151,8 +155,8 @@ const Header = () => {
                 href="#unidades"
                 onClick={(e) => handleSectionClick("unidades", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Unidades
@@ -162,8 +166,8 @@ const Header = () => {
                 href="#unidades"
                 onClick={(e) => handleSectionClick("unidades", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Visite uma Loja
@@ -172,8 +176,8 @@ const Header = () => {
               <Link
                 to="/galeria"
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white "
                   }`}
               >
                 Cardápio
@@ -182,8 +186,8 @@ const Header = () => {
                 href="#sobre"
                 onClick={(e) => handleSectionClick("sobre", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white "
                   }`}
               >
                 Sobre
@@ -191,8 +195,8 @@ const Header = () => {
               <Link
                 to="/franqueados"
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Ser Franqueado
@@ -204,8 +208,8 @@ const Header = () => {
                 href="/#unidades"
                 onClick={(e) => handleNavigateToSection("unidades", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Unidades
@@ -214,8 +218,8 @@ const Header = () => {
                 href="/#unidades"
                 onClick={(e) => handleNavigateToSection("unidades", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Visite uma Loja
@@ -223,8 +227,8 @@ const Header = () => {
               <Link
                 to="/galeria"
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white "
                   }`}
               >
                 Cardápio
@@ -233,8 +237,8 @@ const Header = () => {
                 href="/#sobre"
                 onClick={(e) => handleNavigateToSection("sobre", e)}
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white "
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white "
                   }`}
               >
                 Sobre
@@ -242,8 +246,8 @@ const Header = () => {
               <Link
                 to="/franqueados"
                 className={`transition-colors duration-300 ${isScrolled
-                    ? "text-muted-foreground hover:text-primary"
-                    : "text-white/80 hover:text-white"
+                  ? "text-muted-foreground hover:text-primary"
+                  : "text-white/80 hover:text-white"
                   }`}
               >
                 Ser Franqueado

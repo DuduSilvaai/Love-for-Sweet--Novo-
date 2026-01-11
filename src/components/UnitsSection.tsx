@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { MapPin, Clock } from "lucide-react";
 import { AnimatedCard } from "@/components/AnimatedCard";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useState, useEffect, useRef } from "react";
 
 // Import store images
 import storeJardins from "@/assets/store-jardins.jpg";
@@ -24,6 +25,58 @@ import teste4 from "@/assets/teste4.png";
 import sorocaba2 from "@/assets/sorocaba2.png";
 import botucatu from "@/assets/botucatu.png";
 import dionysiaImage from "@/assets/mais.png";
+
+// Componente de imagem com lazy loading para as lojas
+const LazyStoreImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "100px" }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !isLoaded) {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setIsLoaded(true);
+    }
+  }, [isInView, src, isLoaded]);
+
+  return (
+    <div ref={imgRef} className="relative h-48 overflow-hidden bg-gray-100">
+      {isLoaded ? (
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse">
+          <div className="w-8 h-8 border-3 border-brand-primary border-t-transparent rounded-full animate-spin opacity-50" />
+        </div>
+      )}
+    </div>
+  );
+};
+
 const UnitsSection = () => {
   const headerAnimation = useScrollAnimation<HTMLDivElement>({
     animationType: "fade-up",
@@ -51,8 +104,8 @@ const UnitsSection = () => {
       mapsLink:
         "https://www.google.com/maps/place/Love+For+Sweet+-+Lapa/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cef919fd0e79ad:0x1d1824bd56f4050e!8m2!3d-23.523316!4d-46.7056167!16s%2Fg%2F11szkxltxz?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
-   
-   {
+
+    {
       id: 4,
       name: "Love for Sweet Osasco Dionysia",
       address: "Av. Dionysia Alves Barreto 211, Osasco - SP",
@@ -127,13 +180,10 @@ const UnitsSection = () => {
                 <Card className="overflow-hidden h-full shadow-soft hover:shadow-elegant transition-all duration-300 bg-white border-0">
                   <div className="flex flex-col h-full">
                     {/* Store Image */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={store.image}
-                        alt={`Interior da loja ${store.name}`}
-                        className="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
-                      />
-                    </div>
+                    <LazyStoreImage
+                      src={store.image}
+                      alt={`Interior da loja ${store.name}`}
+                    />
 
                     {/* Store Content */}
                     <div className="p-6 flex flex-col flex-grow">

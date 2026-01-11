@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import bannerBrunches from "@/assets/banner-brunch.png";
 import bannerBrunchesMobile from "@/assets/banner-brunch-mobile.png";
 import bannerMacarons from "@/assets/banner-macarons.png";
@@ -12,6 +12,34 @@ import bannerMilkshakes from "@/assets/banner-milkshake.png";
 import bannerMilkshakesMobile from "@/assets/banner-milkshake-mobile.png";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
+// Componente de imagem com lazy loading para o carousel
+const CarouselImage = ({ src, isMobile }: { src: string; isMobile: boolean }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setIsLoaded(true);
+  }, [src]);
+
+  return (
+    <div
+      ref={imgRef}
+      className={`absolute inset-0 bg-cover bg-center ${isMobile ? '' : 'bg-right'} transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+      style={{
+        backgroundImage: isLoaded ? `url("${src}")` : 'none',
+      }}
+    >
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-primary/20 to-brand-secondary/20 animate-pulse">
+          <div className="w-10 h-10 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const CarouselSection = () => {
   const carouselAnimation = useScrollAnimation<HTMLDivElement>({
     animationType: "fade-in",
@@ -20,6 +48,9 @@ const CarouselSection = () => {
   });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Rastrear quais slides já foram visitados para preload
+  const [visitedSlides, setVisitedSlides] = useState<Set<number>>(new Set([0]));
 
   // Hook para detectar se a tela é menor que 860px
   useEffect(() => {
@@ -84,17 +115,30 @@ const CarouselSection = () => {
   // Auto-advance carousel every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => {
+        const next = (prev + 1) % slides.length;
+        setVisitedSlides((visited) => new Set([...visited, next]));
+        return next;
+      });
     }, 8000);
 
     return () => clearInterval(interval);
   }, [slides.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => {
+      const next = (prev + 1) % slides.length;
+      setVisitedSlides((visited) => new Set([...visited, next]));
+      return next;
+    });
   };
+
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => {
+      const next = (prev - 1 + slides.length) % slides.length;
+      setVisitedSlides((visited) => new Set([...visited, next]));
+      return next;
+    });
   };
   return (
     <section className="py-20 bg-gradient-soft">
@@ -113,13 +157,10 @@ const CarouselSection = () => {
               {slides.map((slide) => (
                 <div key={slide.id} className="w-full flex-shrink-0 px-3">
                   <Card className="relative h-[500px] lg:h-[600px] max-[860px]:h-[700px] border-0 rounded-3xl overflow-hidden mx-3">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center min-[861px]:bg-right"
-                      style={{
-                        backgroundImage: `url("${isMobile ? slide.imageMobile : slide.image
-                          }")`,
-                      }}
-                    ></div>
+                    <CarouselImage
+                      src={isMobile ? slide.imageMobile : slide.image}
+                      isMobile={isMobile}
+                    />
 
                     <div className="relative z-10 h-full flex items-start pt-20 max-[860px]:pt-12">
                       <div className="container mx-auto px-12 max-[860px]:px-8 h-full flex flex-col">
@@ -182,8 +223,8 @@ const CarouselSection = () => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                    ? "bg-brand-primary brightness-125"
-                    : "bg-muted border border-gray-300 hover:bg-brand-primary/50 hover:border-brand-primary/50"
+                  ? "bg-brand-primary brightness-125"
+                  : "bg-muted border border-gray-300 hover:bg-brand-primary/50 hover:border-brand-primary/50"
                   }`}
               />
             ))}
