@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import useEmblaCarousel from "embla-carousel-react";
-import heroDesserts from "@/assets/hero-desserts.jpg";
-import bannerChocolates from "@/assets/banner-chocolates.jpg";
 import bannerBrunch from "@/assets/Press/banner-brunch.png";
 
 // Componente para Lazy Loading de imagens
@@ -153,17 +151,7 @@ import dulceCoffee from "@/assets/products/gallery/bebidas-optimized/dulce-coffe
 import milkshakes from "@/assets/products/gallery/bebidas-optimized/milkshakes.png";
 import vitaminaAcai from "@/assets/products/gallery/bebidas-optimized/vitamina-acai.png";
 
-// Carregamento dinâmico das imagens de Encomendas
-const encomendaImages = import.meta.glob("@/assets/Encomendas/*.{jpg,JPG,png,PNG}", { eager: true });
-const dynamicEncomendas = Object.entries(encomendaImages).map(([path, module]: any) => {
-  const filename = path.split('/').pop() || '';
-  const title = filename.replace(/\.[^/.]+$/, "");
-  return {
-    src: module.default,
-    title,
-    category: "Encomendas"
-  };
-});
+
 
 // Componente de Seção de Carrossel
 const ProductCarouselSection = ({ title, items, category }: any) => {
@@ -528,11 +516,11 @@ const Gallery = () => {
     { src: coldCoffee, title: "Cold Coffee", category: "Bebidas" },
     { src: capuccino, title: "Capuccino", category: "Bebidas" },
 
-    ...dynamicEncomendas,
+
   ];
 
   const categories = [
-    { title: "Encomendas", key: "Encomendas" },
+
     { title: "Bolos", key: "Bolos" },
     { title: "Tortas", key: "Tortas" },
     { title: "Doces Momentos", key: "Doces Momentos" },
@@ -588,11 +576,7 @@ const Gallery = () => {
               </p>
             </div>
 
-            {/* Banner Aviso Encomenda - Topo */}
-            <div className="banner-aviso-encomenda">
-              Todos os produtos podem ser encomendados, basta entrar em contato
-              com a unidade mais próxima de você e fazer sua encomenda
-            </div>
+
 
             {/* Seções de Carrossel */}
             {categories.map((category) => {
@@ -609,11 +593,7 @@ const Gallery = () => {
               );
             })}
 
-            {/* Banner Aviso Encomenda - Fundo */}
-            <div className="banner-aviso-encomenda">
-              Todos os produtos podem ser encomendados, basta entrar em contato
-              com a unidade mais próxima de você e fazer sua encomenda
-            </div>
+
 
             {/* Botão Cardápio */}
             <div className="text-center mt-8">
