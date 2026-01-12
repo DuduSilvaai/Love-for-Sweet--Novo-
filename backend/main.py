@@ -163,6 +163,36 @@ def handle_email():
         response.status_code = 500
         return response
 
+@app.route('/api/test-connection', methods=['GET'])
+def test_connection():
+    import socket
+    results = {}
+    
+    # Teste 1: Gmail (Porta 587)
+    try:
+        sock = socket.create_connection(("smtp.gmail.com", 587), timeout=5)
+        results["gmail_587"] = "OK - Conectado (Se usar Gmail, deve funcionar)"
+        sock.close()
+    except Exception as e:
+        results["gmail_587"] = f"ERRO: {str(e)} (Bloqueado pelo Render)"
+
+    # Teste 2: SendGrid (Porta 587)
+    try:
+        sock = socket.create_connection(("smtp.sendgrid.net", 587), timeout=5)
+        results["sendgrid_587"] = "OK - Conectado (SendGrid está acessível)"
+        sock.close()
+    except Exception as e:
+        results["sendgrid_587"] = f"ERRO: {str(e)}"
+        
+    # Diagnóstico de Variáveis
+    results["DEBUG_ENV"] = {
+        "EMAIL_PROVIDER": os.getenv("EMAIL_PROVIDER", "padrao_gmail"),
+        "TEM_REMETENTE": "Sim" if os.getenv("EMAIL_REMETENTE") or os.getenv("SENDGRID_FROM_EMAIL") else "Nao",
+        "TEM_SENHA": "Sim" if os.getenv("EMAIL_SENHA_APP") or os.getenv("SENDGRID_API_KEY") else "Nao"
+    }
+    
+    return jsonify(results)
+
 if __name__ == '__main__':
     print("Servidor Backend rodando na porta 5000...")
     app.run(debug=True, port=5000)
