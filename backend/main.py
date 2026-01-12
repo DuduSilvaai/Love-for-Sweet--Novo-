@@ -11,8 +11,16 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# CORS: Permitir Frontend local e produção
-CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True) 
+# CORS: Configure basic permissive CORS
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# Force CORS headers on every response (including 500 errors) to prevent browser confusion
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
+    return response 
 
 # Se preferir restringir (Recomendado para produção real, mas "*" resolve o erro agora):
 # CORS(app, origins=[
@@ -27,7 +35,7 @@ CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 def enviar_email_backend(dados):
     # --- CONFIGURAÇÕES VIA VARIÁVEIS DE AMBIENTE ---
     SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-    SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))  # SSL
+    SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))  # TLS (StartTLS) geralmente é 587
     EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
     EMAIL_SENHA_APP = os.getenv("EMAIL_SENHA_APP")
     EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO")
@@ -53,8 +61,14 @@ def enviar_email_backend(dados):
         """
         msg.attach(MIMEText(body, 'plain'))
 
-        print("[BACKEND] Conectando ao Gmail via SSL...")
-        server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
+        print(f"[BACKEND] Conectando ao Gmail ({SMTP_SERVER}:{SMTP_PORT}) via TLS...")
+        
+        # Timeout explícito para não travar o worker
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) 
+        # server.set_debuglevel(1) # Descomente para debug profundo no log
+
+        print("[BACKEND] Iniciando STARTTLS...")
+        server.starttls()
         
         print("[BACKEND] Fazendo Login...")
         server.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
@@ -90,7 +104,9 @@ def handle_email():
             return jsonify({"message": resultado}), 500
             
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+    except Exception as e:
+        print(f"!!! ERRO 500 NA API: {str(e)}", flush=True) # Log para o Render
+        return jsonify({"message": str(e), "error": True}), 500
 
 if __name__ == '__main__':
     print("Servidor Backend rodando na porta 5000...")
