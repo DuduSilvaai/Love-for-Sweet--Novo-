@@ -578,6 +578,14 @@ const Gallery = () => {
 
 
 
+            {/* Banner de Aviso - Inserção 1 */}
+            <div className="banner-aviso-encomenda">
+              <p>
+                Todos os produtos podem ser encomendados, basta entrar em contato
+                com a unidade mais próxima de você e fazer sua encomenda
+              </p>
+            </div>
+
             {/* Seções de Carrossel */}
             {categories.map((category) => {
               const items = getItemsByCategory(category.key);
@@ -593,7 +601,13 @@ const Gallery = () => {
               );
             })}
 
-
+            {/* Banner de Aviso - Inserção 2 */}
+            <div className="banner-aviso-encomenda">
+              <p>
+                Todos os produtos podem ser encomendados, basta entrar em contato
+                com a unidade mais próxima de você e fazer sua encomenda
+              </p>
+            </div>
 
             {/* Botão Cardápio */}
             <div className="text-center mt-8">

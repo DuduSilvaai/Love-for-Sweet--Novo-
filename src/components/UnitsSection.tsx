@@ -116,16 +116,6 @@ const UnitsSection = () => {
         "https://www.google.com/maps/place/Love+For+Sweet+-+Osasco+Dionysia/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94ceff0027e3a0cd:0xe9f4292961f82ec4!8m2!3d-23.5365621!4d-46.7833568!16s%2Fg%2F11xlw3wk70?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
     },
     {
-      id: 5,
-      name: "Love for Sweet Shopping Catarina",
-      address: "Rua Rafael Dias Costa 140, São Roque - SP",
-      hours: "Seg-Sáb: 10h às 19h; Dom: 12h às 19h",
-      highlight: "Perfeita para o corporativo",
-      image: saoRoque,
-      mapsLink:
-        "https://www.google.com/maps/place/Catarina+Fashion+Outlet/@-23.4824921,-47.414618,10z/data=!4m6!3m5!1s0x94cf6a455ebc270d:0x9fa1b986c75abcd0!8m2!3d-23.4201508!4d-47.1627973!16s%2Fg%2F11bzsnltkk?entry=ttu&g_ep=EgoyMDI1MTAwOC4wIKXMDSoASAFQAw%3D%3D",
-    },
-    {
       id: 6,
       name: "Love for Sweet Shopping Iguatemi Esplanada",
       address: "Av. Gisele Constantino 1850, Sorocaba - SP",

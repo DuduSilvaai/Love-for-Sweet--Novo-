@@ -12,12 +12,17 @@ load_dotenv()
 app = Flask(__name__)
 
 # CORS: Permitir Frontend local e produção
-CORS(app, origins=[
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://www.loveforsweet.com.br",
-    "https://loveforsweet.com.br"
-])
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True) 
+
+# Se preferir restringir (Recomendado para produção real, mas "*" resolve o erro agora):
+# CORS(app, origins=[
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+#     "https://www.loveforsweet.com.br",
+#     "https://loveforsweet.com.br",
+#     "https://loveforsweet.com.br/",
+#     "https://www.loveforsweet.com.br/"
+# ])
 
 def enviar_email_backend(dados):
     # --- CONFIGURAÇÕES VIA VARIÁVEIS DE AMBIENTE ---

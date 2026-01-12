@@ -1,5 +1,8 @@
 import { Heart, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoWhite from "@/assets/logo-white.png";
+import logoBrancaCoracao from "@/assets/logo-branca-coracao.png";
+
 const Footer = () => {
   return (
     <footer className="bg-brand-primary text-white">
@@ -11,7 +14,7 @@ const Footer = () => {
               <div className="">
                 <Link to="/">
                   <img
-                    src="./src/assets/logo-white.png"
+                    src={logoWhite}
                     alt="Love for Sweet"
                     className="w-[180px] transition-transform duration-300 hover:scale-105"
                   />
@@ -71,7 +74,7 @@ const Footer = () => {
             <div className="space-y-6">
               <div className="flex items-center">
                 <img
-                  src="./src/assets/logo-branca-coracao.png"
+                  src={logoBrancaCoracao}
                   alt="Love for Sweet"
                   className="w-[360px] md:w-[420px] lg:w-[480px]"
                 />
