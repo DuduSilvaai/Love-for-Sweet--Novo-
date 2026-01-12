@@ -100,6 +100,18 @@ def enviar_email_backend(dados):
 def health_check():
     return "Backend Online", 200
 
+@app.route('/debug', methods=['GET'])
+def debug_env():
+    """Endpoint para debug das variáveis de ambiente (remover em produção)"""
+    env_status = {
+        "EMAIL_REMETENTE": "✓ Definido" if os.getenv("EMAIL_REMETENTE") else "✗ VAZIO",
+        "EMAIL_SENHA_APP": "✓ Definido" if os.getenv("EMAIL_SENHA_APP") else "✗ VAZIO", 
+        "EMAIL_DESTINATARIO": "✓ Definido" if os.getenv("EMAIL_DESTINATARIO") else "✗ VAZIO",
+        "SMTP_SERVER": os.getenv("SMTP_SERVER", "smtp.gmail.com"),
+        "SMTP_PORT": os.getenv("SMTP_PORT", "587")
+    }
+    return jsonify(env_status), 200
+
 @app.route('/api/email', methods=['OPTIONS'])
 def handle_preflight():
     """Handle CORS preflight requests"""
@@ -110,18 +122,29 @@ def handle_email():
     try:
         dados = request.json
         if not dados:
-            return jsonify({"message": "Nenhum dado recebido"}), 400
+            response = jsonify({"message": "Nenhum dado recebido", "error": True})
+            response.status_code = 400
+            return response
         
+        print(f"[API] Dados recebidos: {dados}")
         resultado = enviar_email_backend(dados)
         
         if resultado == "OK":
-            return jsonify({"message": "OK"}), 200
+            response = jsonify({"message": "Email enviado com sucesso!"})
+            response.status_code = 200
+            return response
         else:
-            return jsonify({"message": resultado}), 500
+            print(f"[API] Erro no envio: {resultado}")
+            response = jsonify({"message": resultado, "error": True})
+            response.status_code = 500
+            return response
             
     except Exception as e:
-        print(f"!!! ERRO 500 NA API: {str(e)}", flush=True) # Log para o Render
-        return jsonify({"message": str(e), "error": True}), 500
+        error_msg = f"ERRO 500 NA API: {str(e)}"
+        print(error_msg, flush=True)
+        response = jsonify({"message": error_msg, "error": True})
+        response.status_code = 500
+        return response
 
 if __name__ == '__main__':
     print("Servidor Backend rodando na porta 5000...")
