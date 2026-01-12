@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import useEmblaCarousel from "embla-carousel-react";
 import bannerBrunch from "@/assets/Press/banner-brunch.png";
+import WarningBanner from "@/components/WarningBanner";
 
 // Componente para Lazy Loading de imagens
 const LazyImage = ({ src, alt = "" }: { src: string; alt?: string }) => {
@@ -579,11 +580,8 @@ const Gallery = () => {
 
 
             {/* Banner de Aviso - Inserção 1 */}
-            <div className="banner-aviso-encomenda">
-              <p>
-                Todos os produtos podem ser encomendados, basta entrar em contato
-                com a unidade mais próxima de você e fazer sua encomenda
-              </p>
+            <div className="my-8">
+              <WarningBanner />
             </div>
 
             {/* Seções de Carrossel */}
@@ -602,11 +600,8 @@ const Gallery = () => {
             })}
 
             {/* Banner de Aviso - Inserção 2 */}
-            <div className="banner-aviso-encomenda">
-              <p>
-                Todos os produtos podem ser encomendados, basta entrar em contato
-                com a unidade mais próxima de você e fazer sua encomenda
-              </p>
+            <div className="my-8">
+              <WarningBanner />
             </div>
 
             {/* Botão Cardápio */}

@@ -35,13 +35,27 @@ def add_cors_headers(response):
 
 def enviar_email_backend(dados):
     # --- CONFIGURAÇÕES VIA VARIÁVEIS DE AMBIENTE ---
-    SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-    SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))  # TLS (StartTLS) geralmente é 587
-    EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
-    EMAIL_SENHA_APP = os.getenv("EMAIL_SENHA_APP")
-    EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO")
+    # Suporte para Gmail e SendGrid
+    EMAIL_PROVIDER = os.getenv("EMAIL_PROVIDER", "gmail")  # "gmail" ou "sendgrid"
+    
+    if EMAIL_PROVIDER == "sendgrid":
+        # Configuração SendGrid
+        SMTP_SERVER = "smtp.sendgrid.net"
+        SMTP_PORT = 587
+        EMAIL_REMETENTE = os.getenv("SENDGRID_FROM_EMAIL", "noreply@loveforsweet.com.br")
+        EMAIL_SENHA_APP = os.getenv("SENDGRID_API_KEY")  # API Key do SendGrid
+        EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO", "loveforsweet.sorocaba@gmail.com")
+    else:
+        # Configuração Gmail (padrão)
+        SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+        SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+        EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
+        EMAIL_SENHA_APP = os.getenv("EMAIL_SENHA_APP")
+        EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO")
 
     # Debug para produção - verificar se as variáveis estão sendo carregadas
+    print(f"[DEBUG] EMAIL_PROVIDER: {EMAIL_PROVIDER}")
+    print(f"[DEBUG] SMTP_SERVER: {SMTP_SERVER}:{SMTP_PORT}")
     print(f"[DEBUG] EMAIL_REMETENTE: {'✓ Definido' if EMAIL_REMETENTE else '✗ VAZIO'}")
     print(f"[DEBUG] EMAIL_SENHA_APP: {'✓ Definido' if EMAIL_SENHA_APP else '✗ VAZIO'}")
     print(f"[DEBUG] EMAIL_DESTINATARIO: {'✓ Definido' if EMAIL_DESTINATARIO else '✗ VAZIO'}")
@@ -72,7 +86,7 @@ def enviar_email_backend(dados):
         """
         msg.attach(MIMEText(body, 'plain'))
 
-        print(f"[BACKEND] Conectando ao Gmail ({SMTP_SERVER}:{SMTP_PORT}) via TLS...")
+        print(f"[BACKEND] Conectando ao {EMAIL_PROVIDER.upper()} ({SMTP_SERVER}:{SMTP_PORT}) via TLS...")
         
         # Timeout explícito para não travar o worker
         server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) 
@@ -82,7 +96,10 @@ def enviar_email_backend(dados):
         server.starttls()
         
         print("[BACKEND] Fazendo Login...")
-        server.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
+        if EMAIL_PROVIDER == "sendgrid":
+            server.login("apikey", EMAIL_SENHA_APP)  # SendGrid usa "apikey" como username
+        else:
+            server.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
         
         print("[BACKEND] Enviando mensagem...")
         server.sendmail(EMAIL_REMETENTE, EMAIL_DESTINATARIO, msg.as_string())
