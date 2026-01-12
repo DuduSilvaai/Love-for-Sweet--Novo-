@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Carrega as variáveis do arquivo .env (para uso local)
+# No Render, as variáveis são definidas no painel de Environment Variables
 load_dotenv()
 
 app = Flask(__name__)
@@ -39,6 +40,16 @@ def enviar_email_backend(dados):
     EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
     EMAIL_SENHA_APP = os.getenv("EMAIL_SENHA_APP")
     EMAIL_DESTINATARIO = os.getenv("EMAIL_DESTINATARIO")
+
+    # Debug para produção - verificar se as variáveis estão sendo carregadas
+    print(f"[DEBUG] EMAIL_REMETENTE: {'✓ Definido' if EMAIL_REMETENTE else '✗ VAZIO'}")
+    print(f"[DEBUG] EMAIL_SENHA_APP: {'✓ Definido' if EMAIL_SENHA_APP else '✗ VAZIO'}")
+    print(f"[DEBUG] EMAIL_DESTINATARIO: {'✓ Definido' if EMAIL_DESTINATARIO else '✗ VAZIO'}")
+    
+    if not EMAIL_REMETENTE or not EMAIL_SENHA_APP or not EMAIL_DESTINATARIO:
+        erro_msg = "ERRO: Variáveis de ambiente de email não configuradas no Render"
+        print(erro_msg)
+        return erro_msg
 
     try:
         print(f"--- [BACKEND] INICIANDO ENVIO: {dados.get('nome')} ---")
@@ -89,6 +100,11 @@ def enviar_email_backend(dados):
 def health_check():
     return "Backend Online", 200
 
+@app.route('/api/email', methods=['OPTIONS'])
+def handle_preflight():
+    """Handle CORS preflight requests"""
+    return '', 200
+
 @app.route('/api/email', methods=['POST'])
 def handle_email():
     try:
@@ -103,7 +119,6 @@ def handle_email():
         else:
             return jsonify({"message": resultado}), 500
             
-    except Exception as e:
     except Exception as e:
         print(f"!!! ERRO 500 NA API: {str(e)}", flush=True) # Log para o Render
         return jsonify({"message": str(e), "error": True}), 500
