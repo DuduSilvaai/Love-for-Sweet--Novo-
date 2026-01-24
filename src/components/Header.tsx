@@ -24,7 +24,7 @@ const Header = () => {
   const isFranchisePage = location.pathname === "/franqueados";
 
   // Link para Sou Franqueado (pode ser alterado conforme necessário)
-  const areaMembrosLink = "#"; // Substitua pelo link desejado
+  const areaMembrosLink = "https://area-de-membros2.vercel.app";
 
   useEffect(() => {
     // Na página de franqueados, sempre manter o estado pós-scroll
