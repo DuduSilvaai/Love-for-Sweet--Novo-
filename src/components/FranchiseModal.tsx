@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { X, Check, CheckCircle } from 'lucide-react';
+import { X, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,6 +31,7 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isManualDDI, setIsManualDDI] = useState(false);
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     if (!isOpen) return null;
 
@@ -65,6 +67,7 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setSubmitError(null); // Limpar erro anterior
 
         // Validação Estrita
         const newErrors: { [key: string]: string } = {};
@@ -102,103 +105,56 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
         setIsLoading(true);
 
         try {
-            // Leitura explicita das variáveis
-            const nome = formData.nome;
-            const email = formData.email;
-            const ddi = formData.ddi;
-            const telefone = formData.telefone;
-            const disponibilidade = formData.disponibilidade;
-            const capital = formData.capital;
+            // Leitura das chaves do EmailJS das variáveis de ambiente
+            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-            // Debug solicitado: Print "Dados lidos: ..."
-            console.log(`Dados lidos: ${nome}, ${email}, ${ddi}, ${telefone}, ${disponibilidade}, ${capital}`);
+            // Validar se as variáveis estão configuradas
+            if (!serviceId || !templateId || !publicKey) {
+                throw new Error("Configuração do EmailJS incompleta. Verifique as variáveis de ambiente.");
+            }
 
-            // Validação de Nulos
-            const dadosValidados = {
-                nome: nome || "",
-                email: email || "",
-                ddi: ddi || "",
-                telefone: telefone || "",
-                disponibilidade: disponibilidade || "",
-                capital: capital || ""
+            // Mapeamento de dados exato para o template do EmailJS
+            const templateParams = {
+                nome: formData.nome,
+                email: formData.email,
+                telefone: formData.telefone,
+                ddi: formData.ddi,
+                disponibilidade: formData.disponibilidade,
+                capital: formData.capital
             };
 
-            // Verificar escopo das variáveis (redundante pois usamos state, mas bom para debug)
-            if (!formData) throw new Error("FormData is null or undefined");
+            console.log("DEBUG: Enviando dados via EmailJS:", templateParams);
 
-            // Preparando os dados como solicitado (processar_envio)
-            const payload = {
-                nome: dadosValidados.nome,
-                // DDI + Telefone concatenados
-                contato: `${dadosValidados.ddi} ${dadosValidados.telefone}`,
-                email: dadosValidados.email,
-                disponibilidade: dadosValidados.disponibilidade,
-                capital: dadosValidados.capital
-            };
+            // Enviar email via EmailJS
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-            console.log("DEBUG: Payload preparado para envio:", payload);
+            console.log("DEBUG: Email enviado com sucesso via EmailJS!");
 
-            // Simulação do envio (O backend Python seria chamado aqui)
-            console.log("DEBUG: Payload FINAL preparado:", payload);
+            // Sucesso: Mostrar tela de sucesso
+            setIsSuccess(true);
 
-            // Chamada Real ao Backend Python (Flask)
-            // Usa variável de ambiente para a URL da API (desenvolvimento ou produção)
-            const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
-            
-            // Configuração para lidar com cold start do Render.com
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 segundos timeout
-            
-            const response = await fetch(`${API_URL}/api/email`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-                signal: controller.signal
+            // Limpar formulário
+            setFormData({
+                nome: '',
+                ddi: '+55',
+                telefone: '',
+                email: '',
+                disponibilidade: '',
+                capital: '',
             });
-            
-            clearTimeout(timeoutId);
+            setIsManualDDI(false);
 
-            const data = await response.json();
-            const respostaBackend = data.message; // Espera "OK" ou mensagem de erro
-
-            if (response.ok && respostaBackend === "OK") {
-                console.log("DEBUG: Envio realizado com sucesso (Resposta: OK).");
-                // Mudar para tela de sucesso em vez de alert
-                setIsSuccess(true);
-
-                // Limpar formulário no background
-                setFormData({
-                    nome: '',
-                    ddi: '+55',
-                    telefone: '',
-                    email: '',
-                    disponibilidade: '',
-                    capital: '',
-                });
-                setIsManualDDI(false);
-            } else {
-                // Caso contrário (qualquer coisa diferente de "OK" é erro)
-                throw new Error(respostaBackend || "Erro desconhecido no servidor.");
-            }
         } catch (error) {
-            console.error("ERRO CRÍTICO AO ENVIAR:", error);
-            
-            let errorMessage = "Erro interno desconhecido";
-            
+            console.error("ERRO AO ENVIAR EMAIL:", error);
+
+            // Mostrar erro inline abaixo do botão
             if (error instanceof Error) {
-                if (error.name === 'AbortError') {
-                    errorMessage = "Timeout: O servidor demorou muito para responder. Tente novamente em alguns segundos.";
-                } else if (error.message.includes('Failed to fetch')) {
-                    errorMessage = "Erro de conexão: Verifique sua internet ou tente novamente em alguns segundos.";
-                } else {
-                    errorMessage = error.message;
-                }
+                setSubmitError(error.message || "Erro ao enviar. Tente novamente.");
+            } else {
+                setSubmitError("Erro ao enviar. Tente novamente.");
             }
-            
-            console.error(`ERRO FATAL NA LEITURA: ${errorMessage}`);
-            alert(`Erro: ${errorMessage}`);
         } finally {
             setIsLoading(false);
         }
@@ -398,6 +354,13 @@ const FranchiseModal: React.FC<FranchiseModalProps> = ({ isOpen, onClose }) => {
                                 )}
                             </Button>
                         </div>
+
+                        {/* Mensagem de Erro de Envio */}
+                        {submitError && (
+                            <p className="text-red-500 text-sm text-center mt-2">
+                                {submitError}
+                            </p>
+                        )}
 
                     </form>
                 )}
